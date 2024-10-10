@@ -1,0 +1,35 @@
+html, body {
+    background-color: rgb(30, 30, 30);
+}
+
+button {
+    margin: 1vw;
+    width: 15vw;
+    height: auto;
+    align-items: center;
+
+    font-size: 1.5vw;
+}
+
+#welcome_message {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    text-align: center;
+
+    font-size: 6vw;
+    color: rgb(0, 158, 121);
+}
+
+#banner {
+    margin-top: 15vh;
+
+    background-image: url(./images/banner.jpg);
+    background-size: 100% auto;
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
