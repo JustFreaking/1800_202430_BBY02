@@ -1,11 +1,10 @@
-html,
-body {
+html, body {
     background-color: rgb(246, 190, 199);
 }
 
 button {
     margin: 1vw;
-    /* width: 15vw; */
+    width: 15vw;
     height: auto;
     align-items: center;
 
@@ -25,7 +24,7 @@ button {
 #banner {
     margin-top: 15vh;
 
-    background-image: url(../img/banner.jpg);
+    background-image: url(./images/banner.jpg);
     background-size: 100% auto;
 }
 
@@ -34,7 +33,6 @@ button {
     justify-content: center;
     align-items: center;
 }
-
 footer {
     position: fixed;
     bottom: 0;
@@ -44,4 +42,6 @@ footer {
     text-align: center;
     padding: 10px 0;
     margin-right: 5%;
-}
+  }
+  
+
