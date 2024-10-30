@@ -1,11 +1,25 @@
-html,
-body {
+
+/*-------------------------------------
+ * customize material design icon sizes 
+ *-------------------------------------
+ */
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+.responsive {
+    width: 100%;
+    height: auto;
+  }
+  html, body {
     background-color: rgb(246, 190, 199);
 }
 
 button {
     margin: 1vw;
-    /* width: 15vw; */
+    width: 15vw;
     height: auto;
     align-items: center;
 
@@ -25,7 +39,7 @@ button {
 #banner {
     margin-top: 15vh;
 
-    background-image: url(../img/banner.jpg);
+    background-image: url(../images/banner.jpg);
     background-size: 100% auto;
 }
 
@@ -34,14 +48,14 @@ button {
     justify-content: center;
     align-items: center;
 }
-
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: rgb(68, 68, 141);
-    color: white;
+    background-color: rgb(174, 174, 213);
     text-align: center;
     padding: 10px 0;
     margin-right: 5%;
-}
+  }
+
+
