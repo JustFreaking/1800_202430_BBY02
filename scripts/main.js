@@ -53,7 +53,7 @@ function writeEvents() {
     });
     eventsRef.add({
         code: "event3",
-        name: "Playe-date for 2-3 years old", //replace with your own city?
+        name: "Playdate for 2-3 years old", //replace with your own city?
         city: "North Vancouver",
         Address: "Lions gate community center, 2188 Lonsdale ave, North Vansouver, BC, P9W 8A1",
         Kids_age: "2-3",
@@ -100,3 +100,56 @@ function displayCardsDynamically(collection) {
 }
 
 displayCardsDynamically("events");  //input param is the name of the collection
+document.getElementById('reviewForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent the default form submission
+
+  // Get form values
+  const userId = document.getElementById('userId').value;
+  const eventId = document.getElementById('eventId').value;
+  const rating = document.getElementById('rating').value;
+  const comment = document.getElementById('comment').value;
+
+  // Save the review to Firestore
+  db.collection('reviews').add({
+      userId: userId,
+      eventId: eventId,
+      rating: rating,
+      comment: comment,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp() // Optional: add a timestamp
+  })
+  .then(() => {
+      console.log('Review added successfully!');
+      // Optionally reset the form or give feedback to the user
+      document.getElementById('reviewForm').reset();
+  })
+  .catch((error) => {
+      console.error('Error adding review: ', error);
+  });
+});
+function fetchReviews() {
+  db.collection('reviews').orderBy('timestamp', 'desc').get().then((querySnapshot) => {
+      const reviewsList = document.getElementById('reviewsList');
+      reviewsList.innerHTML = ''; // Clear existing reviews
+
+      querySnapshot.forEach((doc) => {
+          const review = doc.data();
+          reviewsList.innerHTML += `
+              <div class="review">
+                  <p><strong>User ID:</strong> ${review.userId}</p>
+                  <p><strong>Event ID:</strong> ${review.eventId}</p>
+                  <p><strong>Rating:</strong> ${review.rating}</p>
+                  <p><strong>Comment:</strong> ${review.comment}</p>
+                  <p><em>Submitted on: ${review.timestamp ? review.timestamp.toDate().toLocaleString() : 'N/A'}</em></p>
+                  <hr>
+              </div>
+          `;
+      });
+  }).catch((error) => {
+      console.error('Error fetching reviews: ', error);
+  });
+}
+
+// Call fetchReviews when the page loads
+window.onload = function() {
+  fetchReviews();
+};
