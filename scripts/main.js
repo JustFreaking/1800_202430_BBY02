@@ -39,7 +39,7 @@ function writeEvents() {
         code: "event2",
         name: "Circle time at Blue Mountain Park", //replace with your own event
         city: "Coquitlam",
-        Address: "Blue Mountain Park, 2187 Kind Edward Ave, Coquitlam, BC, V3H 0T1",
+        Address: "Blue Mountain Park, 2187 Kind Edward Ave, Coquitlam, BC, V3H",
         Kids_age: "0-3",
         details: "So much fun for kids",
         event_date: "11/3/2024",      //number value
@@ -71,8 +71,9 @@ function displayCardsDynamically(collection) {
             allEvents.forEach(doc => { //iterate thru each doc
                 var title = doc.data().name;       // get value of the "name" key
                 var details = doc.data().details;  // get value of the "details" key
-								var eventCode = doc.data().code;    //get unique ID to each hike to be used for fetching right image
+				var eventCode = doc.data().code;    //get unique ID to each hike to be used for fetching right image
                 var eventDate = doc.data().event_date; //gets the length field
+                var docID = doc.id;
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
 
                 //update title and text and image
@@ -80,7 +81,7 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-length').innerHTML = eventDate;
                 newcard.querySelector('.card-text').innerHTML = details;
                 newcard.querySelector('.card-image').src = `./images/${eventCode}.jpg`; 
-
+                newcard.querySelector('a').href = "eachEvent.html?docID="+docID;
                 //Optional: give unique ids to all elements for future use
                 // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
                 // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
@@ -95,6 +96,8 @@ function displayCardsDynamically(collection) {
 }
 
 displayCardsDynamically("events");  //input param is the name of the collection
+
+
 document.getElementById('reviewForm').addEventListener('submit', function(event) {
   event.preventDefault(); // Prevent the default form submission
 
