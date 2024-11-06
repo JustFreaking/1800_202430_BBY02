@@ -1,115 +1,87 @@
 
-function getNameFromAuth() {
+
+function insertNameFromFirestore() {
+    // Check if the user is logged in:
     firebase.auth().onAuthStateChanged(user => {
-        // Check if a user is signed in:
         if (user) {
-            // Do something for the currently logged-in user here: 
-            console.log(user.uid); //print the uid in the browser console
-            console.log(user.displayName);  //print the user name in the browser console
-            userName = user.displayName;
-
-            //method #1:  insert with JS
-            document.getElementById("name-goes-here").innerText = userName;    
-
-            // method #2:  insert using jquery
-            // $("#name-goes-here").text(userName); //using jquery
-
-            // method #3:  insert using querySelector
-            // document.querySelector("#name-goes-here").innerText = userName
-
+            console.log(user.uid); // Let's know who the logged-in user is by logging their UID
+            currentUser = db.collection("users").doc(user.uid); // Go to the Firestore document of the user
+            currentUser.get().then(userDoc => {
+                // Get the user name
+                let userName = userDoc.data().name;
+                console.log(userName);
+                //$("#name-goes-here").text(userName); // jQuery
+                document.getElementById("name-goes-here").innerText = userName;
+            })
         } else {
-            // No user is signed in.
-            console.log ("No user is logged in");
+            console.log("No user is logged in."); // Log a message when no user is logged in
         }
+    })
+}
+insertNameFromFirestore();
+
+function writeEvents() {
+    //define a variable for the collection you want to create in Firestore to populate data
+    var eventsRef = db.collection("events");
+
+    eventsRef.add({
+        code: "event1",
+        name: "Halloween craft makers", //replace with your own event
+        city: "Vancouver",
+        Address: "Hasting community Center, 201 Hasting Ave, BC, V3K 0C4",
+        Kids_age: "2-5",
+        details: "A lovely place for kids to make Halloween crafts",
+        event_date: "10/29/2024",          //number value
+        event_time: "10 am",       //number value
+        last_updated: firebase.firestore.FieldValue.serverTimestamp()  //current system time
+    });
+    eventsRef.add({
+        code: "event2",
+        name: "Circle time at Blue Mountain Park", //replace with your own event
+        city: "Coquitlam",
+        Address: "Blue Mountain Park, 2187 Kind Edward Ave, Coquitlam, BC, V3H",
+        Kids_age: "0-3",
+        details: "So much fun for kids",
+        event_date: "11/3/2024",      //number value
+        event_time: "12 pm",     //number value
+        last_updated: firebase.firestore.Timestamp.fromDate(new Date("March 10, 2022"))
+    });
+    eventsRef.add({
+        code: "event3",
+        name: "Playdate for 2-3 years old", //replace with your own city?
+        city: "North Vancouver",
+        Address: "Lions gate community center, 2188 Lonsdale ave, North Vansouver, BC, P9W 8A1",
+        Kids_age: "2-3",
+        details: "A great chance for kids to play",
+        event_date: "11/20/2024",        //number value
+        event_time: "9 am",     //number value
+        last_updated: firebase.firestore.Timestamp.fromDate(new Date("January 1, 2023"))
     });
 }
-getNameFromAuth(); //run the function
-// Function to read the quote of the day from the Firestore "quotes" collection
-// Input param is the String representing the day of the week, aka, the document name
-function readQuote(day) {
-    db.collection("quotes").doc(day)                                                         //name of the collection and documents should matach excatly with what you have in Firestore
-        .onSnapshot(dayDoc => {                                                              //arrow notation
-            console.log("current document data: " + dayDoc.data());                          //.data() returns data object
-            document.getElementById("quote-goes-here").innerHTML = dayDoc.data().quote;      //using javascript to display the data on the right place
 
-            //Here are other ways to access key-value data fields
-            //$('#quote-goes-here').text(dayDoc.data().quote);         //using jquery object dot notation
-            //$("#quote-goes-here").text(dayDoc.data()["quote"]);      //using json object indexing
-            //document.querySelector("#quote-goes-here").innerHTML = dayDoc.data().quote;
-
-        }, (error) => {
-            console.log ("Error calling onSnapshot", error);
-        });
-    }
-    readQuote("tuesday");        //calling the function
-
-    function writeHikes() {
-        //define a variable for the collection you want to create in Firestore to populate data
-        var hikesRef = db.collection("hikes");
-    
-        hikesRef.add({
-            code: "BBY01",
-            name: "Burnaby Lake Park Trail", //replace with your own city?
-            city: "Burnaby",
-            province: "BC",
-            level: "easy",
-                    details: "A lovely place for lunch walk",
-            length: 10,          //number value
-            hike_time: 60,       //number value
-            lat: 49.2467097082573,
-            lng: -122.9187029619698,
-            last_updated: firebase.firestore.FieldValue.serverTimestamp()  //current system time
-        });
-        hikesRef.add({
-            code: "AM01",
-            name: "Buntzen Lake Trail", //replace with your own city?
-            city: "Anmore",
-            province: "BC",
-            level: "moderate",
-            details: "Close to town, and relaxing",
-            length: 10.5,      //number value
-            hike_time: 80,     //number value
-            lat: 49.3399431028579,
-            lng: -122.85908496766939,
-            last_updated: firebase.firestore.Timestamp.fromDate(new Date("March 10, 2022"))
-        });
-        hikesRef.add({
-            code: "NV01",
-            name: "Mount Seymour Trail", //replace with your own city?
-            city: "North Vancouver",
-            province: "BC",
-            level: "hard",
-            details:  "Amazing ski slope views",
-            length: 8.2,        //number value
-            hike_time: 120,     //number value
-            lat: 49.38847101455571,
-            lng: -122.94092543551031,
-            last_updated: firebase.firestore.Timestamp.fromDate(new Date("January 1, 2023"))
-        });
-    }
-
-    //------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from
 //------------------------------------------------------------------------------
 function displayCardsDynamically(collection) {
-    let cardTemplate = document.getElementById("hikeCardTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable. 
+    let cardTemplate = document.getElementById("eventsCardTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable. 
 
     db.collection(collection).get()   //the collection called "hikes"
-        .then(allHikes=> {
+        .then(allEvents=> {
             //var i = 1;  //Optional: if you want to have a unique ID for each hike
-            allHikes.forEach(doc => { //iterate thru each doc
+            allEvents.forEach(doc => { //iterate thru each doc
                 var title = doc.data().name;       // get value of the "name" key
                 var details = doc.data().details;  // get value of the "details" key
-								var hikeCode = doc.data().code;    //get unique ID to each hike to be used for fetching right image
-                var hikeLength = doc.data().length; //gets the length field
-                let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
+				var eventCode = doc.data().code;    //get unique ID to each hike to be used for fetching right image
+                var eventDate = doc.data().event_date; //gets the length field
                 var docID = doc.id;
+                let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
+
                 //update title and text and image
                 newcard.querySelector('.card-title').innerHTML = title;
-                newcard.querySelector('.card-length').innerHTML = hikeLength +"km";
+                newcard.querySelector('.card-length').innerHTML = eventDate;
                 newcard.querySelector('.card-text').innerHTML = details;
-                newcard.querySelector('.card-image').src = `./images/${hikeCode}.jpg`; //Example: NV01.jpg
-                newcard.querySelector('a').href = "eachHike.html?docID="+docID;
+                newcard.querySelector('.card-image').src = `./images/${eventCode}.jpg`; 
+                newcard.querySelector('a').href = "eachEvent.html?docID="+docID;
                 //Optional: give unique ids to all elements for future use
                 // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
                 // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
@@ -123,4 +95,59 @@ function displayCardsDynamically(collection) {
         })
 }
 
-displayCardsDynamically("hikes");  //input param is the name of the collection
+displayCardsDynamically("events");  //input param is the name of the collection
+
+
+document.getElementById('reviewForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent the default form submission
+
+  // Get form values
+  const userId = document.getElementById('userId').value;
+  const eventId = document.getElementById('eventId').value;
+  const rating = document.getElementById('rating').value;
+  const comment = document.getElementById('comment').value;
+
+  // Save the review to Firestore
+  db.collection('reviews').add({
+      userId: userId,
+      eventId: eventId,
+      rating: rating,
+      comment: comment,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp() // Optional: add a timestamp
+  })
+  .then(() => {
+      console.log('Review added successfully!');
+      // Optionally reset the form or give feedback to the user
+      document.getElementById('reviewForm').reset();
+  })
+  .catch((error) => {
+      console.error('Error adding review: ', error);
+  });
+});
+function fetchReviews() {
+  db.collection('reviews').orderBy('timestamp', 'desc').get().then((querySnapshot) => {
+      const reviewsList = document.getElementById('reviewsList');
+      reviewsList.innerHTML = ''; // Clear existing reviews
+
+      querySnapshot.forEach((doc) => {
+          const review = doc.data();
+          reviewsList.innerHTML += `
+              <div class="review">
+                  <p><strong>User ID:</strong> ${review.userId}</p>
+                  <p><strong>Event ID:</strong> ${review.eventId}</p>
+                  <p><strong>Rating:</strong> ${review.rating}</p>
+                  <p><strong>Comment:</strong> ${review.comment}</p>
+                  <p><em>Submitted on: ${review.timestamp ? review.timestamp.toDate().toLocaleString() : 'N/A'}</em></p>
+                  <hr>
+              </div>
+          `;
+      });
+  }).catch((error) => {
+      console.error('Error fetching reviews: ', error);
+  });
+}
+
+// Call fetchReviews when the page loads
+window.onload = function() {
+  fetchReviews();
+};
