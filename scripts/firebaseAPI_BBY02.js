@@ -12,3 +12,5 @@ var firebaseConfig = {
 
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+//add today
+const auth = firebase.auth();

@@ -151,3 +151,8 @@ function fetchReviews() {
 window.onload = function() {
   fetchReviews();
 };
+
+
+function navigateToPage() {
+    window.location.href = 'event.html';  // Redirect to page2.html
+  }

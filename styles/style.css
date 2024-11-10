@@ -73,3 +73,10 @@ footer {
 #custom-bg {
     background-color: white;
 }
+
+.fixed-size-button {
+    width: 200px;  /* Set a fixed width */
+    height: 50px;  /* Set a fixed height */
+    font-size: 20px;  /* Adjust font size as needed */
+
+}
