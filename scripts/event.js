@@ -1,30 +1,34 @@
-// // Import Firebase libraries
-// import { initializeApp } from 'firebase/app';
-// import { getFirestore, collection, addDoc } from 'firebase/firestore';
+
+function writeEvent() {
+    console.log("inside write event");
+    let eventTitle = document.getElementById("title").value;
+    let eventLocation = document.getElementById("location").value;
+    let eventTime = document.getElementById("time").value;
+    let eventDescription = document.getElementById("description").value;
 
 
-// // Handle form submission
-// document.getElementById('eventForm').addEventListener('submit', async (e) => {
-//     e.preventDefault(); // Prevent the page from reloading on form submit
 
-//     const name = document.getElementById('name').value;
-//     const date = document.getElementById('date').value;
-//     const location = document.getElementById('location').value;
+    console.log(eventTitle, eventLocation, eventTime, eventDescription);
 
-//     try {
-//         // Add the event to Firestore
-//         const docRef = await addDoc(collection(db, 'events'), {
-//             name: name,
-//             date: date,
-//             location: location,
-//         });
+    var user = firebase.auth().currentUser;
+    if (user) {
+        var currentUser = db.collection("users").doc(user.uid);
+        var userID = user.uid;
 
-//         // Log the new document reference
-//         console.log("Event added with ID: ", docRef.id);
-
-//         // Redirect to main.html or update the page with the new event
-//         window.location.href = "main.html"; // Or you could directly update the event list here
-//     } catch (e) {
-//         console.error("Error adding document: ", e);
-//     }
-// });
+        // Get the document for the current user.
+        db.collection("events").add({
+           
+            owner: userID,
+            title: eventTitle,
+            location: eventLocation,
+            time: eventTime,
+            description: eventDescription,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(() => {
+            window.location.href = "thanks.html"; // Redirect to the thanks page
+        });
+    } else {
+        console.log("No user is signed in");
+        window.location.href = 'event.html';
+    }
+}

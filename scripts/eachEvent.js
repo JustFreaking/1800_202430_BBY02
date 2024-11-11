@@ -8,17 +8,16 @@ function displayEventInfo() {
         .doc( ID )
         .get()
         .then( doc => {
-            eventCode = doc.data().code;
-            eventName = doc.data().name;
-            eventdetails = doc.data().details;
-            eventDate = doc.data().event_date;
-            eventAddress = doc.data().Address;
+            eventName = doc.data().title;
+            eventdetails = doc.data().description;
+            eventDate = doc.data().time;
+            eventAddress = doc.data().location;
             
             
             // only populate title, and image
             document.getElementById( "eventName" ).innerHTML = eventName;
-            let imgEvent = document.querySelector( ".event-img" );
-            imgEvent.src = "../images/" + eventCode + ".jpg";
+            // let imgEvent = document.querySelector( ".event-img" );
+            // imgEvent.src = "../images/" + eventCode + ".jpg";
             document.getElementById( "details-go-here" ).innerHTML = eventdetails;
             document.getElementById( "event_date-go-here" ).innerHTML = eventDate;
             document.getElementById( "Address-go-here" ).innerHTML = eventAddress;
