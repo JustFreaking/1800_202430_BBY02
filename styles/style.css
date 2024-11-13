@@ -34,6 +34,7 @@ body {
 button {
     margin: 1vw;
     width: 15vw;
+    max-width: 150px;
     height: auto;
     align-items: center;
 
@@ -73,7 +74,6 @@ footer {
 }
 
 #custom-bg {
-<<<<<<< HEAD
     background-color: #696d8c;
 }
 
@@ -197,7 +197,6 @@ aside a:hover {
     padding: 1rem;
     text-align: center;
     font-size: 0.875rem;
-=======
     background-color: white;
 }
 
@@ -206,5 +205,4 @@ aside a:hover {
     height: 50px;  /* Set a fixed height */
     font-size: 20px;  /* Adjust font size as needed */
 
->>>>>>> 3b3b1f22ebf1206ed1ff0bbb5617aed33e34a0cb
 }
