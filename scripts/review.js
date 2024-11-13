@@ -1,12 +1,14 @@
-var eventDocID = localStorage.getItem("eventDocID");    // Visible to all functions on this page
+var eventDocID = localStorage.getItem("EventDocID");    // Visible to all functions on this page
+
+console.log(localStorage.getItem("EventDocID"));
 
 function getEventName(id) {
     db.collection("events")
         .doc(id)
         .get()
         .then((thisEvent) => {
-            var eventName = thisEvent.data().name;
-            document.getElementById("eachEvent").innerHTML = eventName;  // Update the event name dynamically
+            var eventName = thisEvent.data().title;
+            document.getElementById("eventName").innerHTML = eventName;  // Update the event name dynamically
         });
 }
 

@@ -28,7 +28,7 @@ html,
 body {
     margin: 0;
     padding: 0;
-    background-color: rgb(246, 190, 199);
+    background-color: #E5DADA;
 }
 
 button {
@@ -41,14 +41,29 @@ button {
     font-size: 1.5vw;
 }
 
-#welcome_message {
+h1 {
+    color: white;
+}
+
+.welcome_message {
     padding-top: 5vh;
     padding-bottom: 5vh;
     margin: 0;
     text-align: center;
 
     font-size: 6vw;
-    color: pink;
+    color: #E5DADA;
+    filter: blur(0px);
+}
+
+.welcome-container {
+    background-image: url(../images/welcome.png);
+    background-size: 100%;
+}
+
+.welcome-container::before {
+    filter: blur(4px);
+    z-index: -1;
 }
 
 #banner {
@@ -74,7 +89,7 @@ footer {
 }
 
 #custom-bg {
-    background-color: #696d8c;
+    background-color: #D98C27;
 }
 
 .navbar-logo {
@@ -197,7 +212,7 @@ aside a:hover {
     padding: 1rem;
     text-align: center;
     font-size: 0.875rem;
-    background-color: white;
+    background-color: #E5DADA;
 }
 
 .fixed-size-button {
