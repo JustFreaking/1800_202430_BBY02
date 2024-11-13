@@ -34,8 +34,8 @@
     <!-------------------------------------------->
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
-    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" href="./styles/style.css"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style.css">
 
 </head>
 
@@ -57,16 +57,12 @@
         <br/>
         <div id="details-go-here"></div>
         <br/> 
-        <p>Date: </p><div id="event_date-go-here"></div>
+        <p>Date and time: </p><div id="event_date-go-here"></div>
         <br/>
-        <p>Address: </p><div id="Address-go-here"></div>
+        <p>Location: </p><div id="Address-go-here"></div>
 
+        <button class="btn btn-primary position-absolute bottom-0 end-0 m-3" onclick="saveEventDocumentIDAndRedirect()">Write Review</button>
   </div>
-
-  <br/>
-  <br/>
-  <br/>
-
     <!-- our own footer goes here -->
     <nav id="footerPlaceholder"></nav>
 
@@ -76,7 +72,7 @@
     <script src="./scripts/firebaseAPI_BBY02.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/eachEvent.js"></script>
-    <!-- <script src="./scripts/script.js"></script> -->
+    <script src="./scripts/script.js"></script>
 
 </body>
 
