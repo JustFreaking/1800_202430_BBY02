@@ -1,34 +1,42 @@
 var currentUser;
 
-var currentUser;               //points to the document of the user who is logged in
-function populateUserInfo() {
+// Function to fetch and display user data
+function loadUserInfo() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in:
         if (user) {
+            // Reference the correct user document by using the user's UID
+            currentUser = db.collection("users").doc(user.uid);
 
-            //go to the correct user document by referencing to the user uid
-            currentUser = db.collection("users").doc(user.uid)
-            //get the document for current user.
+            // Get the document for the current user
             currentUser.get()
                 .then(userDoc => {
-                    //get the data fields of the user
+                    // Retrieve the data fields of the user
                     let userName = userDoc.data().name;
                     let userCity = userDoc.data().city;
+                    let userEmail = userDoc.data().email;
 
-                    //if the data fields are not empty, then write them in to the form.
+                    // If the data fields are not empty, populate them in the form
                     if (userName != null) {
                         document.getElementById("nameInput").value = userName;
                     }
                     if (userCity != null) {
                         document.getElementById("cityInput").value = userCity;
                     }
+                    if (userEmail != null) {
+                        document.getElementById("emailInput").value = userEmail;
+                    }
                 })
+                .catch(error => {
+                    console.log("Error getting user document:", error);
+                });
         } else {
             // No user is signed in.
             console.log("No user is signed in");
         }
     });
 }
+
 
 function editUserInfo() {
     //Enable the form fields
@@ -51,5 +59,5 @@ function saveUserInfo() {
 }
 
 //call the function to run it 
-populateUserInfo();
+loadUserInfo();
 

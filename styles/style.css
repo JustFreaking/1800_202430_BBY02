@@ -3,7 +3,7 @@
  *-------------------------------------
  */
 
-.material-icons.md-18 {
+ .material-icons.md-18 {
     font-size: 18px;
 }
 
@@ -26,6 +26,8 @@
 
 html,
 body {
+    margin: 0;
+    padding: 0;
     background-color: rgb(246, 190, 199);
 }
 
@@ -71,5 +73,127 @@ footer {
 }
 
 #custom-bg {
-    background-color: #132ad5;
+    background-color: #696d8c;
+}
+
+.navbar-logo {
+    width: 5vw;
+    height: auto;
+    object-fit: contain;
+}
+
+.navbar {
+    max-height: 10vh;
+}
+
+/* -------------------------------------
+ * Profile Page Styles
+ * -------------------------------------
+ */
+
+/* Profile Sidebar */
+
+.container {
+    margin: 1rem;
+}
+
+aside a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+aside a:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.profile-header {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.profile-sidebar {
+    width: 20%; /* Set the width you want */
+    font-size: 1.2rem;
+    border-right: 1px solid #ddd;
+    display: block;
+    padding: 0.5rem 0; /* Adjust the vertical padding as needed */
+    font-weight: bold;
+    color: #333;
+}
+
+
+/* Adjust main content width if necessary */
+.profile-content {
+    width: 80%; /* Adjust this to match the sidebar's width */
+    padding: 2rem;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.profile-image svg {
+    width: 70%;
+    height: 70%;
+    color: #999;
+}
+
+.text-center {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Profile Information Fields */
+.form-control {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Edit and Save Button Styling */
+.d-flex button {
+    width: 120px;
+    font-size: 1rem;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    color: #fff;
+    border: none;
+}
+
+.btn-secondary:hover,
+.btn-info:hover {
+    opacity: 0.9;
+}
+
+/* Footer Placeholder */
+#footerPlaceholder {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.875rem;
 }
