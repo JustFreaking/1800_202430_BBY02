@@ -30,7 +30,10 @@ body {
     padding: 0;
     background-color: #E5DADA;
 }
-
+.collapse navbar-collapse {
+    background-color: white;
+    color: white;
+}
 button {
     margin: 1vw;
     width: 15vw;
@@ -43,6 +46,9 @@ button {
 
 h1 {
     color: white;
+    flex: auto;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
 }
 
 .welcome_message {
@@ -66,17 +72,36 @@ h1 {
     z-index: -1;
 }
 
-#banner {
-    margin-top: 15vh;
 
+#banner {
     background-image: url(../images/banner.jpg);
     background-size: 100% auto;
+}
+button {
+  background-color: orange;
+  border: none;
+  padding: 10px 24px;
+  text-align: center;
+  border-radius: 6px;
+  
+}
+
+button:hover {
+  background-color: #d98804;
 }
 
 #buttons {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.card-body:hover {
+  cursor: pointer;
+}
+
+.card-body {
+  max-width: 150px;
 }
 
 footer {
