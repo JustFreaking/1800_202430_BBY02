@@ -1,5 +1,5 @@
 //Global variable pointing to the current user's Firestore document
-var currentUser;   
+var currentUser;
 
 //Function that calls everything needed for the main page  
 function doAll() {
@@ -10,7 +10,7 @@ function doAll() {
 
             // the following functions are always called when someone is logged in
             insertNameFromFirestore();
-            displayCardsDynamically("hikes");
+            displayCardsDynamically("events");
         } else {
             // No user is signed in.
             console.log("No user is signed in");
@@ -32,11 +32,6 @@ function insertNameFromFirestore() {
     })
 }
 
-
-
-
-
-
 function writeEvents() {
     //define a variable for the collection you want to create in Firestore to populate data
     var eventsRef = db.collection("events");
@@ -47,7 +42,7 @@ function writeEvents() {
         time: "Nov10",
         description: "A lovely place for kids to make Halloween crafts",
         owner: "Parvaneh",          //number value
-        participants:"Parvaneh",       //number value
+        participants: "Parvaneh",       //number value
         number: 1,
         reviews: "Nice event",
         last_updated: firebase.firestore.FieldValue.serverTimestamp()  //current system time
@@ -61,8 +56,8 @@ function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("eventsCardTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable. 
 
     db.collection(collection).get()   //the collection called "hikes"
-        .then(allEvents=> {
-            //var i = 1;  //Optional: if you want to have a unique ID for each hike
+        .then(allEvents => {
+            var i = 1;  //Optional: if you want to have a unique ID for each event
             allEvents.forEach(doc => { //iterate thru each doc
                 var title = doc.data().title;       // get value of the "name" key
                 var description = doc.data().description;  // get value of the "details" key
@@ -74,7 +69,10 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-length').innerHTML = time;
                 newcard.querySelector('.card-text').innerHTML = description;
-                newcard.querySelector('a').href = "eachEvent.html?docID="+docID;
+                newcard.querySelector('a').href = "eachEvent.html?docID=" + docID;
+                newcard.querySelector('i').id = 'save-' + docID;   //guaranteed to be unique
+                newcard.querySelector('i').onclick = () => updateCheckbox(docID);
+                
                 //Optional: give unique ids to all elements for future use
                 // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
                 // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
@@ -88,10 +86,69 @@ function displayCardsDynamically(collection) {
         })
 }
 
-displayCardsDynamically("events");  //input param is the name of the collection
+//-----------------------------------------------------------------------------
+// This function is called whenever the user clicks on the "checkbox" icon.
+// It adds the event to the "joiningEvents" array
+// Then it will change the chechbox icon from the hollow to the solid version. 
+//-----------------------------------------------------------------------------
 
 
+// function saveCheckbox(eventDocID) {
+//     // Manage the backend process to store the eventDocID in the database, recording which event was checked by the user.
+//     currentUser.update({
+//         // Use 'arrayUnion' to add the new checkbox ID to the 'joiningevenets' array.
+//         // This method ensures that the ID is added only if it's not already present, preventing duplicates.
+//         joiningEvents: firebase.firestore.FieldValue.arrayUnion(eventDocID)
+//     })
+//         // Handle the front-end update to change the icon, providing visual feedback to the user that it has been clicked.
+//         .then(function () {
+//             console.log("checkbox has been marked for" + eventDocID);
+//             let iconID = 'save-' + eventDocID;
+//             //this is to change the icon of the event that was saved to "filled"
+//             document.getElementById(iconID).innerText = 'check_box';
+//         });
+// }
 
 function navigateToPage() {
     window.location.href = 'addevent.html';  // Redirect to page2.html
-  }
+}
+
+//-----------------------------------------------------------------------------------------------
+// this function will update the joiningEvents array
+//if it is hollow makes it solid (on clicl) and adds the event to users's "joiningEvents" array
+// if it is solid, makes it hollow, and removes the event from the users's "joiningEvents" array
+//-----------------------------------------------------------------------------------------------
+
+function updateCheckbox(eventDocID) {
+    //alert ("inside update bookmark");        //debug
+    currentUser.get().then(doc =>{
+        console.log(doc.data().joiningEvents);   //debug
+        currentJoiningEvents = doc.data().joiningEvents;
+
+        if (currentJoiningEvents && currentJoiningEvents.includes(eventDocID) ){
+            console.log(eventDocID);
+            currentUser.update({
+                joiningEvents: firebase.firestore.FieldValue.arrayRemove(eventDocID)
+            })
+            .then(function(){
+                console.log("This checkbox is removed for " + currentUser);
+                let iconID = "save-" + eventDocID;   //"save-08130843"
+                console.log(iconID);
+                document.getElementById(iconID).innerText = "check_box_outline_blank";
+            })
+        } else{
+            currentUser.set({
+                joiningEvents: firebase.firestore.FieldValue.arrayUnion(eventDocID),
+            },
+            {
+                merge: true
+            })
+            .then(function(){
+                console.log("This check box is selected for " + currentUser);
+                let iconID = "save-" + eventDocID;   //"save-08130843"
+                console.log(iconID);
+                document.getElementById(iconID).innerText = "check_box";
+            })
+        }
+    })
+}
