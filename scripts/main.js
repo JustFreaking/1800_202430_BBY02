@@ -72,7 +72,7 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('a').href = "eachEvent.html?docID=" + docID;
                 newcard.querySelector('i').id = 'save-' + docID;   //guaranteed to be unique
                 newcard.querySelector('i').onclick = () => updateCheckbox(docID);
-                
+
                 //Optional: give unique ids to all elements for future use
                 // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
                 // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
@@ -121,34 +121,49 @@ function navigateToPage() {
 
 function updateCheckbox(eventDocID) {
     //alert ("inside update bookmark");        //debug
-    currentUser.get().then(doc =>{
+    currentUser.get().then(doc => {
         console.log(doc.data().joiningEvents);   //debug
         currentJoiningEvents = doc.data().joiningEvents;
 
-        if (currentJoiningEvents && currentJoiningEvents.includes(eventDocID) ){
+        if (currentJoiningEvents && currentJoiningEvents.includes(eventDocID)) {
             console.log(eventDocID);
             currentUser.update({
                 joiningEvents: firebase.firestore.FieldValue.arrayRemove(eventDocID)
             })
-            .then(function(){
-                console.log("This checkbox is removed for " + currentUser);
-                let iconID = "save-" + eventDocID;   //"save-08130843"
-                console.log(iconID);
-                document.getElementById(iconID).innerText = "check_box_outline_blank";
+            db.collection("events").doc(eventDocID).update({
+                //Firebase documentation has this method for incrementation.
+                scores: firebase.firestore.FieldValue.increment(-1)
             })
-        } else{
+                .then(function () {
+                    console.log("This checkbox is removed for " + currentUser);
+                    console.log("Like count successfully decremented for " + eventDocID); 
+                    let iconID = "save-" + eventDocID;   //"save-08130843"
+                    console.log(iconID);
+                    document.getElementById(iconID).innerText = "check_box_outline_blank";
+                })
+                .then( {
+
+                    })
+        } else {
             currentUser.set({
                 joiningEvents: firebase.firestore.FieldValue.arrayUnion(eventDocID),
             },
-            {
-                merge: true
-            })
-            .then(function(){
-                console.log("This check box is selected for " + currentUser);
-                let iconID = "save-" + eventDocID;   //"save-08130843"
-                console.log(iconID);
-                document.getElementById(iconID).innerText = "check_box";
-            })
+                {
+                    merge: true
+                })
+                db.collection("events").doc(eventDocID).update({
+                    //Firebase documentation has this method for decrease.
+                    scores: firebase.firestore.FieldValue.increment(1)
+                })
+                .then(function () {
+                    console.log("This check box is selected for " + currentUser);
+                    console.log("Like count successfully incremented for " + eventDocID); 
+                    let iconID = "save-" + eventDocID;   //"save-08130843"
+                    console.log(iconID);
+                    document.getElementById(iconID).innerText = "check_box";
+                })
+                
         }
     })
 }
+
