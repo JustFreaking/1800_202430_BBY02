@@ -131,7 +131,7 @@ function updateCheckbox(eventDocID) {
                 joiningEvents: firebase.firestore.FieldValue.arrayRemove(eventDocID)
             })
             db.collection("events").doc(eventDocID).update({
-                //Firebase documentation has this method for incrementation.
+                //This method decrements the number of attendants. 
                 scores: firebase.firestore.FieldValue.increment(-1)
             })
                 .then(function () {
@@ -152,7 +152,7 @@ function updateCheckbox(eventDocID) {
                     merge: true
                 })
                 db.collection("events").doc(eventDocID).update({
-                    //Firebase documentation has this method for decrease.
+                    //This method increments the number of attendants.
                     scores: firebase.firestore.FieldValue.increment(1)
                 })
                 .then(function () {
