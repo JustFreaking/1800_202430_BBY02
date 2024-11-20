@@ -30,10 +30,7 @@ body {
     padding: 0;
     background-color: #E5DADA;
 }
-.collapse navbar-collapse {
-    background-color: white;
-    color: white;
-}
+
 button {
     margin: 1vw;
     width: 15vw;
@@ -246,3 +243,14 @@ aside a:hover {
     font-size: 20px;  /* Adjust font size as needed */
 
 }
+
+
+#navbarSupportedContent {
+  background-color: #D98C27; /* Change this to your desired color */
+  transition: background-color 0.3s ease-in-out;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
