@@ -227,6 +227,9 @@ aside a:hover {
 .btn-info:hover {
     opacity: 0.9;
 }
+#firebaseui-auth-container {
+  margin-top: 50px;
+}
 
 /* Footer Placeholder */
 #footerPlaceholder {
@@ -244,13 +247,16 @@ aside a:hover {
 
 }
 
-
+/* nav bar stuff */
 #navbarSupportedContent {
   background-color: #D98C27; /* Change this to your desired color */
   transition: background-color 0.3s ease-in-out;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+
+
 
 
 
