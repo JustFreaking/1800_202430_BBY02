@@ -7,7 +7,8 @@ body {
 }
 
 h1 {
-    color: white;
+    color: #E5DADA;
+    font-size: 3vw;
 }
 
 footer {
@@ -75,15 +76,10 @@ button {
 * ============
 */
 
-.welcome_message {
-    padding-top: 5vh;
-    padding-bottom: 5vh;
-    margin: 0;
+#welcome-message {
     text-align: center;
-
-    font-size: 6vw;
-    color: #E5DADA;
     filter: blur(0px);
+    font-size: 6vw;
 }
 
 .welcome-container {
@@ -102,6 +98,12 @@ button {
     font-size: 1.25rem;
     font-weight: bold;
     color: #333;
+}
+
+.banner .divider {
+    width: 2px; /* Line thickness */
+    height: 50%; /* Line height */
+    background-color: lightgray; /* Line color */
 }
 
 /*============
@@ -224,6 +226,7 @@ button {
     display: flex;
     height: 15%;
     width: 100%;
+    justify-content: center;
 }
 
 #event-container {
@@ -247,6 +250,7 @@ button {
     display: flex;
     height: 10%;
     align-items: center;
+    justify-content: center;
 }
 
 /*============
@@ -254,11 +258,15 @@ button {
 * ============
 */
 
-#banner {
-    margin-top: 15vh;
-
+.banner {
+    display: flex;
     background-image: url(../images/banner.jpg);
     background-size: 100% auto;
+    width: 100%;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
+    gap: 10vw;
 }
 
 #buttons {
