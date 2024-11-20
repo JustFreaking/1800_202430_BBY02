@@ -61,7 +61,9 @@ h1 {
 
 .welcome-container {
     background-image: url(../images/welcome.png);
-    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .welcome-container::before {
@@ -231,6 +233,14 @@ aside a:hover {
   margin-top: 50px;
 }
 
+.add-event-button {
+  background-color: orange;
+  border: none;
+}
+
+.add-event-button:hover {
+  background-color: #d98804;
+}
 /* Footer Placeholder */
 #footerPlaceholder {
     background-color: #f8f9fa;
@@ -252,7 +262,6 @@ aside a:hover {
   background-color: #D98C27; /* Change this to your desired color */
   transition: background-color 0.3s ease-in-out;
   border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 
