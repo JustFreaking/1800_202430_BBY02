@@ -1,34 +1,69 @@
+// Reference to Firestore
+const db = firebase.firestore();
 
-function writeEvent() {
-    console.log("inside write event");
-    let eventTitle = document.getElementById("title").value;
-    let eventLocation = document.getElementById("location").value;
-    let eventTime = document.getElementById("time").value;
-    let eventDescription = document.getElementById("description").value;
+// Perform Search
+function performSearch() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    const eventsContainer = document.getElementById('events-container');
+    eventsContainer.innerHTML = ''; // Clear previous results
 
-
-
-    console.log(eventTitle, eventLocation, eventTime, eventDescription);
-
-    var user = firebase.auth().currentUser;
-    if (user) {
-        var currentUser = db.collection("users").doc(user.uid);
-        var userID = user.uid;
-
-        // Get the document for the current user.
-        db.collection("events").add({
-           
-            owner: userID,
-            title: eventTitle,
-            location: eventLocation,
-            time: eventTime,
-            description: eventDescription,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        }).then(() => {
-            window.location.href = "thanks.html"; // Redirect to the thanks page
+    db.collection('events')
+        .orderBy('timestamp', 'desc') // Order by most recent
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                const event = doc.data();
+                // Match the query with title, location, or description
+                if (
+                    event.title.toLowerCase().includes(query) ||
+                    event.location.toLowerCase().includes(query) ||
+                    event.description.toLowerCase().includes(query)
+                ) {
+                    displayEvent(event);
+                }
+            });
+        })
+        .catch((error) => {
+            console.error("Error fetching events: ", error);
         });
-    } else {
-        console.log("No user is signed in");
-        window.location.href = 'event.html';
-    }
+}
+
+// Filter Events by Location
+function filterEvents() {
+    const locationFilter = document.getElementById('filter-category').value.toLowerCase();
+    const eventsContainer = document.getElementById('events-container');
+    eventsContainer.innerHTML = ''; // Clear previous results
+
+    db.collection('events')
+        .orderBy('timestamp', 'desc')
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                const event = doc.data();
+                // Only display events that match the selected location
+                if (event.location.toLowerCase() === locationFilter || locationFilter === '') {
+                    displayEvent(event);
+                }
+            });
+        })
+        .catch((error) => {
+            console.error("Error fetching events: ", error);
+        });
+}
+
+// Display Event Card
+function displayEvent(event) {
+    const eventsContainer = document.getElementById('events-container');
+    const cardHTML = `
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">${event.title}</h5>
+                    <p class="card-text"><strong>Location:</strong> ${event.location}</p>
+                    <p class="card-text"><strong>Time:</strong> ${event.time}</p>
+                    <p class="card-text">${event.description}</p>
+                </div>
+            </div>
+        </div>`;
+    eventsContainer.insertAdjacentHTML('beforeend', cardHTML);
 }
