@@ -1,9 +1,45 @@
-/*-------------------------------------
- * customize material design icon sizes 
- *-------------------------------------
- */
+/*=============================================== Element Selector ===============================================*/
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #E5DADA;
+}
 
- .material-icons.md-18 {
+h1 {
+    color: white;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    margin-right: 5%;
+}
+
+aside a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+aside a:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+button {
+    margin: 1vw;
+    height: auto;
+    align-items: center;
+
+    font-size: 1.5vw;
+}
+
+/*=============================================== Class Selector ===============================================*/
+.material-icons.md-18 {
     font-size: 18px;
 }
 
@@ -24,26 +60,20 @@
     height: auto;
 }
 
-html,
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #E5DADA;
+.card {
+    margin-bottom: .7rem;
+    width: calc(20% - 1rem);
+    box-sizing: border-box;
 }
 
-button {
-    margin: 1vw;
-    width: 15vw;
-    max-width: 150px;
-    height: auto;
-    align-items: center;
-
-    font-size: 1.5vw;
+.container {
+    margin: 1rem;
 }
 
-h1 {
-    color: white;
-}
+/*============
+* Welcome Banner style
+* ============
+*/
 
 .welcome_message {
     padding-top: 5vh;
@@ -66,31 +96,16 @@ h1 {
     z-index: -1;
 }
 
-#banner {
-    margin-top: 15vh;
-
-    background-image: url(../images/banner.jpg);
-    background-size: 100% auto;
+.text-center {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
 }
 
-#buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
-    margin-right: 5%;
-}
-
-#custom-bg {
-    background-color: #D98C27;
-}
+/*============
+* Nav-bar style
+* ============
+*/
 
 .navbar-logo {
     width: 5vw;
@@ -102,27 +117,10 @@ footer {
     max-height: 10vh;
 }
 
-/* -------------------------------------
- * Profile Page Styles
- * -------------------------------------
- */
-
-/* Profile Sidebar */
-
-.container {
-    margin: 1rem;
-}
-
-aside a {
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-aside a:hover {
-    color: #007bff;
-    text-decoration: underline;
-}
+/*============
+* Form style
+* ============
+*/
 
 .profile-header {
     font-size: 2rem;
@@ -131,19 +129,17 @@ aside a:hover {
 }
 
 .profile-sidebar {
-    width: 20%; /* Set the width you want */
+    width: 20%;
     font-size: 1.2rem;
     border-right: 1px solid #ddd;
     display: block;
-    padding: 0.5rem 0; /* Adjust the vertical padding as needed */
+    padding: 0.5rem 0;
     font-weight: bold;
     color: #333;
 }
 
-
-/* Adjust main content width if necessary */
 .profile-content {
-    width: 80%; /* Adjust this to match the sidebar's width */
+    width: 80%; 
     padding: 2rem;
 }
 
@@ -164,13 +160,11 @@ aside a:hover {
     color: #999;
 }
 
-.text-center {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #333;
-}
+/*============
+* Form style
+* ============
+*/
 
-/* Profile Information Fields */
 .form-control {
     background-color: #f8f9fa;
     border: 1px solid #ddd;
@@ -183,10 +177,15 @@ aside a:hover {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Edit and Save Button Styling */
-.d-flex button {
-    width: 120px;
-    font-size: 1rem;
+/*============
+* Button style
+* ============
+*/
+
+.fixed-size-button {
+    width: 200px; 
+    height: 50px;  
+    font-size: 20px; 
 }
 
 .btn-secondary {
@@ -206,18 +205,74 @@ aside a:hover {
     opacity: 0.9;
 }
 
-/* Footer Placeholder */
+.d-flex button {
+    width: 120px;
+    font-size: 1rem;
+}
+
+/*=============================================== ID Selector ===============================================*/
+
+/*============
+* events.html style
+* ============
+*/
+
+#search-container {
+    align-items: center;
+    display: flex;
+    height: 15%;
+    width: 100%;
+}
+
+#event-container {
+    width: 100%;
+}
+#event-title {
+    max-width: 15%;
+}
+
+#search-bar {
+	font-size: clamp(14px, 2vw, 24px);
+	resize: none;
+	max-height: 10vh;
+	width: 75%;
+	height: 5vh;
+}
+
+#filter-container {
+    margin-left: calc(var(--events-width, 0px) + 3rem);
+    width: 100%;
+    display: flex;
+    height: 10%;
+    align-items: center;
+}
+
+/*============
+* style
+* ============
+*/
+
+#banner {
+    margin-top: 15vh;
+
+    background-image: url(../images/banner.jpg);
+    background-size: 100% auto;
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#custom-bg {
+    background-color: #D98C27;
+}
+
 #footerPlaceholder {
     background-color: #f8f9fa;
     padding: 1rem;
     text-align: center;
     font-size: 0.875rem;
     background-color: #E5DADA;
-}
-
-.fixed-size-button {
-    width: 200px;  /* Set a fixed width */
-    height: 50px;  /* Set a fixed height */
-    font-size: 20px;  /* Adjust font size as needed */
-
 }

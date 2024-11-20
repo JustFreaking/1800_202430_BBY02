@@ -1,7 +1,5 @@
 var eventDocID = localStorage.getItem("EventDocID");    // Visible to all functions on this page
 
-console.log(localStorage.getItem("EventDocID"));
-
 function getEventName(id) {
     db.collection("events")
         .doc(id)
