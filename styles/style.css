@@ -8,6 +8,9 @@ body {
 
 h1 {
     color: white;
+    flex: auto;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
 }
 
 footer {
@@ -34,7 +37,12 @@ button {
     margin: 1vw;
     height: auto;
     align-items: center;
-
+    background-color: orange;
+    border: none;
+    padding: 10px 24px;
+    text-align: center;
+    border-radius: 6px;
+  
     font-size: 1.5vw;
 }
 
@@ -118,7 +126,11 @@ button {
 .navbar {
     max-height: 10vh;
 }
-
+#navbarSupportedContent {
+  background-color: #D98C27; /* Change this to your desired color */
+  transition: background-color 0.3s ease-in-out;
+  border-radius: 5px;
+}
 /*============
 * Form style
 * ============
@@ -211,6 +223,16 @@ button {
     width: 120px;
     font-size: 1rem;
 }
+.add-event-button {
+  background-color: orange;
+  border: none;
+}
+.add-event-button:hover {
+  background-color: #d98804;
+}
+button:hover {
+  background-color: #d98804;
+}
 
 /*=============================================== ID Selector ===============================================*/
 
@@ -256,7 +278,6 @@ button {
 
 #banner {
     margin-top: 15vh;
-
     background-image: url(../images/banner.jpg);
     background-size: 100% auto;
 }
@@ -270,7 +291,9 @@ button {
 #custom-bg {
     background-color: #D98C27;
 }
-
+#navbarPlaceholder {
+  max-height: 10vh;
+}
 #footerPlaceholder {
     background-color: #f8f9fa;
     padding: 1rem;
@@ -278,3 +301,5 @@ button {
     font-size: 0.875rem;
     background-color: #E5DADA;
 }
+
+
