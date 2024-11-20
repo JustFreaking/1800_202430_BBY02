@@ -7,10 +7,8 @@ body {
 }
 
 h1 {
-    color: white;
-    flex: auto;
-    padding-top: 5vh;
-    padding-bottom: 5vh;
+    width: auto;
+    flex: none;
     color: #E5DADA;
     font-size: 3vw;
 }
@@ -44,7 +42,7 @@ button {
     padding: 10px 24px;
     text-align: center;
     border-radius: 6px;
-  
+
     font-size: 1.5vw;
 }
 
@@ -103,6 +101,17 @@ button {
     z-index: -1;
 }
 
+.banner {
+    display: flex;
+    justify-content: center;
+    background-image: url(../images/banner.jpg);
+    background-size: 100% auto;
+    width: 100%;
+    height: 50vh;
+    align-items: center;
+    gap: 10vw;
+}
+
 .text-center {
     font-size: 1.25rem;
     font-weight: bold;
@@ -110,9 +119,12 @@ button {
 }
 
 .banner .divider {
-    width: 2px; /* Line thickness */
-    height: 50%; /* Line height */
-    background-color: lightgray; /* Line color */
+    width: 2px;
+    /* Line thickness */
+    height: 50%;
+    /* Line height */
+    background-color: lightgray;
+    /* Line color */
 }
 
 /*============
@@ -129,13 +141,9 @@ button {
 .navbar {
     max-height: 10vh;
 }
-#navbarSupportedContent {
-  background-color: #D98C27; /* Change this to your desired color */
-  transition: background-color 0.3s ease-in-out;
-  border-radius: 5px;
-}
+
 /*============
-* Form style
+* Profile style
 * ============
 */
 
@@ -156,7 +164,7 @@ button {
 }
 
 .profile-content {
-    width: 80%; 
+    width: 80%;
     padding: 2rem;
 }
 
@@ -200,9 +208,9 @@ button {
 */
 
 .fixed-size-button {
-    width: 200px; 
-    height: 50px;  
-    font-size: 20px; 
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
 }
 
 .btn-secondary {
@@ -226,15 +234,18 @@ button {
     width: 120px;
     font-size: 1rem;
 }
+
 .add-event-button {
-  background-color: orange;
-  border: none;
+    background-color: orange;
+    border: none;
 }
+
 .add-event-button:hover {
-  background-color: #d98804;
+    background-color: #d98804;
 }
+
 button:hover {
-  background-color: #d98804;
+    background-color: #d98804;
 }
 
 /*=============================================== ID Selector ===============================================*/
@@ -255,20 +266,20 @@ button:hover {
 #event-container {
     width: 100%;
 }
+
 #event-title {
     max-width: 15%;
 }
 
 #search-bar {
-	font-size: clamp(14px, 2vw, 24px);
-	resize: none;
-	max-height: 10vh;
-	width: 75%;
-	height: 5vh;
+    font-size: clamp(14px, 2vw, 24px);
+    resize: none;
+    max-height: 10vh;
+    width: 75%;
+    height: 5vh;
 }
 
 #filter-container {
-    margin-left: calc(var(--events-width, 0px) + 3rem);
     width: 100%;
     display: flex;
     height: 10%;
@@ -281,17 +292,6 @@ button:hover {
 * ============
 */
 
-#banner {
-    margin-top: 15vh;
-    background-image: url(../images/banner.jpg);
-    background-size: 100% auto;
-    width: 100%;
-    height: 50vh;
-    justify-content: center;
-    align-items: center;
-    gap: 10vw;
-}
-
 #buttons {
     display: flex;
     justify-content: center;
@@ -301,9 +301,17 @@ button:hover {
 #custom-bg {
     background-color: #D98C27;
 }
+
 #navbarPlaceholder {
-  max-height: 10vh;
+    max-height: 10vh;
 }
+
+#navbarSupportedContent {
+    background-color: #D98C27;
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 5px;
+}
+
 #footerPlaceholder {
     background-color: #f8f9fa;
     padding: 1rem;
@@ -311,5 +319,3 @@ button:hover {
     font-size: 0.875rem;
     background-color: #E5DADA;
 }
-
-
