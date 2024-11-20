@@ -287,6 +287,21 @@ button:hover {
     justify-content: center;
 }
 
+.event-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.review-button {
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+.reviewButton {
+  font-size: 16px;
+}
 /*============
 * style
 * ============

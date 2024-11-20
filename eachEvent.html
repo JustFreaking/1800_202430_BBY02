@@ -50,18 +50,18 @@
 
     <!-- the body of your page goes here -->
     <!-- stuff -->
+    
     <div class="container">
+      
+      <div class="event-card">
         <h1><span id="eventName"> this event</span></h1>
-        <img class="event-img responsive" src=""/>
-        <br/>
-        <br/>
         <div id="details-go-here"></div>
-        <br/> 
         <p>Date and time: </p><div id="event_date-go-here"></div>
-        <br/>
         <p>Location: </p><div id="Address-go-here"></div>
-
-        <button class="btn btn-primary position-absolute bottom-0 end-0 m-3" onclick="saveEventDocumentIDAndRedirect()">Write Review</button>
+        <div class="review-button">
+          <button class="reviewButton" onclick="saveEventDocumentIDAndRedirect()">Write Review</button>
+        </div>
+      </div>
   </div>
     <!-- our own footer goes here -->
     <nav id="footerPlaceholder"></nav>
