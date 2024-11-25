@@ -348,3 +348,7 @@ button:hover {
     font-size: 0.875rem;
     background-color: #E5DADA;
 }
+
+.card-attend{
+    font-weight: bold;
+}

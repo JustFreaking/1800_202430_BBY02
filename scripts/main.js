@@ -58,7 +58,8 @@ function displayCardsDynamically(collection) {
         .then(allEvents => {
             var i = 1; 
             allEvents.forEach(doc => { 
-                var title = doc.data().title;     
+                var title = doc.data().title;  
+                var score = doc.data().scores;   
                 var description = doc.data().description; 
                 var time = doc.data().time; 
                 var docID = doc.id;
@@ -68,14 +69,12 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-length').innerHTML = time;
                 newcard.querySelector('.card-text').innerHTML = description;
+                newcard.querySelector('.card-attend').innerHTML = score;
+                // newcard.querySelector('.card-attendants').innerHTML = score;
                 newcard.querySelector('a').href = "eachEvent.html?docID=" + docID;
                 newcard.querySelector('i').id = 'save-' + docID;   //guaranteed to be unique
                 newcard.querySelector('i').onclick = () => updateCheckbox(docID);
 
-                //Optional: give unique ids to all elements for future use
-                // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
-                // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
-                // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
 
                 //attach to gallery, Example: "hikes-go-here"
                 document.getElementById(collection + "-go-here").appendChild(newcard);
@@ -85,28 +84,7 @@ function displayCardsDynamically(collection) {
         })
 }
 
-//-----------------------------------------------------------------------------
-// This function is called whenever the user clicks on the "checkbox" icon.
-// It adds the event to the "joiningEvents" array
-// Then it will change the chechbox icon from the hollow to the solid version. 
-//-----------------------------------------------------------------------------
 
-
-// function saveCheckbox(eventDocID) {
-//     // Manage the backend process to store the eventDocID in the database, recording which event was checked by the user.
-//     currentUser.update({
-//         // Use 'arrayUnion' to add the new checkbox ID to the 'joiningevenets' array.
-//         // This method ensures that the ID is added only if it's not already present, preventing duplicates.
-//         joiningEvents: firebase.firestore.FieldValue.arrayUnion(eventDocID)
-//     })
-//         // Handle the front-end update to change the icon, providing visual feedback to the user that it has been clicked.
-//         .then(function () {
-//             console.log("checkbox has been marked for" + eventDocID);
-//             let iconID = 'save-' + eventDocID;
-//             //this is to change the icon of the event that was saved to "filled"
-//             document.getElementById(iconID).innerText = 'check_box';
-//         });
-// }
 
 function navigateToPage() {
     window.location.href = 'addevent.html';  // Redirect to page2.html
