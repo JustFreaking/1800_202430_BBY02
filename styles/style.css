@@ -4,7 +4,17 @@ body {
     margin: 0;
     padding: 0;
     background-color: #E5DADA;
+    height: 100%;
 }
+
+.content {
+    flex-grow: 1;
+  }
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 
 h1 {
     width: auto;
@@ -17,6 +27,7 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+    background-color: orange;
     text-align: center;
     padding: 10px 0;
     margin-right: 5%;
