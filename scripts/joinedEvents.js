@@ -3,7 +3,7 @@ console.log("Welcome to joinedevents");
 
 //Global variable pointing to the current user's Firestore document
 var currentUser;
-
+var user_joinedEvents;
 //Function that calls everything needed for the main page  
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
@@ -13,8 +13,11 @@ function doAll() {
 
             // the following functions are always called when someone is logged in
             insertNameFromFirestore();
+            
             insertjoiningEventsFirestore();
-            // displayCardsDynamically("events");
+            displayCardsDynamically("events");
+
+           
         } else {
             // No user is signed in.
             console.log("No user is signed in");
@@ -35,72 +38,99 @@ function insertNameFromFirestore() {
     })
 }
 
-// Insert name function using the global variable "currentUser"
+// Insert joiningEvents function using the global variable "currentUser" to insert array of joiningevents from firestore. 
 function insertjoiningEventsFirestore() {
     currentUser.get().then(userDoc => {
         //get the user name
-        var user_joinedEvents = userDoc.data().joiningEvents || [];
+        user_joinedEvents = userDoc.data().joiningEvents || [];
         console.log(user_joinedEvents);
         // $("#name-goes-here").text(user_Name); //jquery
         // document.getElementByID("name-goes-here").innetText=user_Name;
     })
 }
 
- 
-// function displayCardsDynamically(collection) {
-//     // let cardTemplate = document.getElementById("eventsCardTemplate"); 
-//     db.collection(collection).get()  
-//         .then(allEvents => {
-//             // var i = 1; 
-//             allEvents.forEach(doc => { 
-//                 var joiningEvents = doc.data().joiningEvents || [];
-//             })
-//         })
-//         console.log(joiningEvents);
-//     }     
+function displayCardsDynamically(collection) {
+    let cardTemplate = document.getElementById("eventsCardTemplate"); 
+    db.collection(collection)
+    .get()  
+        .then(allEvents => {
+            var i = 1; 
+            allEvents.forEach(doc => { 
+                const eventId = doc.id;
+                if (user_joinedEvents.includes(eventId)){
+                var title = doc.data().title;     
+                var description = doc.data().description; 
+                var time = doc.data().time; 
+                var docID = doc.id;
+                let newcard = cardTemplate.content.cloneNode(true); 
 
-    // // Fetch the user's document from the 'users' collection
-    // const userRef = firebase.firestore().collection('users').doc(userId);
-  
-//     currentUser.get().then(doc => {
-//       if (doc.exists) {
-        
-//         var joiningEvents = doc.data().joiningEvents || [];
-  
-//         // Now fetch the events based on the IDs in joiningEvents array
-//         if (joiningEvents.length > 0) {
- 
-//           fetchEventsByIds(joiningEvents);
-//           console.log(joiningEvents);
-//         } else {
-//           console.log("No events joined yet.");
-//         }
-//       } else {
-//         console.log("User document not found.");
-//       }
-//     }).catch(error => {
-//       console.error("Error getting user document:", error);
-//     });
+                //update title and text and image
+                newcard.querySelector('.card-title').innerHTML = title;
+                newcard.querySelector('.card-length').innerHTML = time;
+                newcard.querySelector('.card-text').innerHTML = description;
+                newcard.querySelector('a').href = "eachEvent.html?docID=" + docID;
+                newcard.querySelector('i').id = 'save-' + docID;   //guaranteed to be unique
+                newcard.querySelector('i').onclick = () => updateCheckbox(docID);
 
-  
-//   // Function to fetch event details based on event IDs
-//   function fetchEventsByIds(eventIds) {
-//     const eventsRef = firebase.firestore().collection('events');
+                //Optional: give unique ids to all elements for future use
+                // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
+                // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
+                // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
+
+                //attach to gallery, Example: "hikes-go-here"
+                document.getElementById(collection + "-go-here").appendChild(newcard);
+
+                //i++;   //Optional: iterate variable to serve as unique ID
+                }
+            })
+        })
     
-//     // Query the 'events' collection to fetch the events by their IDs
-//     eventsRef.where(firebase.firestore.FieldPath.documentId(), 'in', eventIds).get()
-//       .then(querySnapshot => {
-//         if (!querySnapshot.empty) {
-//           // Process the events and display them
-//           querySnapshot.forEach(doc => {
-//             const eventData = doc.data();
-//             renderEvent(eventData); // Call a function to render the event on the page
-//           });
-//         } else {
-//           console.log("No events found.");
-//         }
-//       })
-//       .catch(error => {
-//         console.error("Error fetching events:", error);
-//       });
-//   }
+}
+
+function updateCheckbox(eventDocID) {
+    //alert ("inside update bookmark");        //debug
+    currentUser.get().then(doc => {
+        console.log(doc.data().joiningEvents);   //debug
+        currentJoiningEvents = doc.data().joiningEvents;
+
+        if (currentJoiningEvents && currentJoiningEvents.includes(eventDocID)) {
+            console.log(eventDocID);
+            currentUser.update({
+                joiningEvents: firebase.firestore.FieldValue.arrayRemove(eventDocID)
+            })
+            db.collection("events").doc(eventDocID).update({
+                //This method decrements the number of attendants. 
+                scores: firebase.firestore.FieldValue.increment(-1)
+            })
+                .then(function () {
+                    console.log("This checkbox is removed for " + currentUser);
+                    console.log("Like count successfully decremented for " + eventDocID); 
+                    let iconID = "save-" + eventDocID;   //"save-08130843"
+                    console.log(iconID);
+                    document.getElementById(iconID).innerText = "check_box_outline_blank";
+                })
+                .then( {
+
+                    })
+        } else {
+            currentUser.set({
+                joiningEvents: firebase.firestore.FieldValue.arrayUnion(eventDocID),
+            },
+                {
+                    merge: true
+                })
+                db.collection("events").doc(eventDocID).update({
+                    //This method increments the number of attendants.
+                    scores: firebase.firestore.FieldValue.increment(1)
+                })
+                .then(function () {
+                    console.log("This check box is selected for " + currentUser);
+                    console.log("Like count successfully incremented for " + eventDocID); 
+                    let iconID = "save-" + eventDocID;   //"save-08130843"
+                    console.log(iconID);
+                    document.getElementById(iconID).innerText = "check_box";
+                })
+                
+        }
+    })
+}
