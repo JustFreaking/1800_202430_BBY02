@@ -44,8 +44,6 @@ function insertjoiningEventsFirestore() {
         //get the user name
         user_joinedEvents = userDoc.data().joiningEvents || [];
         console.log(user_joinedEvents);
-        // $("#name-goes-here").text(user_Name); //jquery
-        // document.getElementByID("name-goes-here").innetText=user_Name;
     })
 }
 
@@ -72,15 +70,9 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('i').id = 'save-' + docID;   //guaranteed to be unique
                 newcard.querySelector('i').onclick = () => updateCheckbox(docID);
 
-                //Optional: give unique ids to all elements for future use
-                // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
-                // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
-                // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
 
                 //attach to gallery, Example: "hikes-go-here"
                 document.getElementById(collection + "-go-here").appendChild(newcard);
-
-                //i++;   //Optional: iterate variable to serve as unique ID
                 }
             })
         })
