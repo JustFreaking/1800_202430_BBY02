@@ -47,8 +47,27 @@
     <!-- navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
-
+    <template id="eventsCardTemplate">
+        <div class="card py-2 mx-2" style="width: 18rem">
+            <!-- <img class="card-image card-img-top" src=" ..." alt="..." /> -->
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-length">placeholder</p>
+                <br />
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
+                <a class="btn btn-primary card-href">Read more ...</a>
+                <br/>
+                <br/>
+                <p>Join this event <i class="material-icons">check_box_outline_blank</i></p>
+            </div>
+        </div>
+    </template>
     <!-- the body of your page goes here -->
+     <h2>Here's the list of the events you are joining: </h2>
+
 
     <!-- footer goes here-->
     <nav id="footerPlaceholder"></nav>
@@ -58,7 +77,7 @@
     <!---------------------------------------------->
     <script src="./scripts/firebaseAPI_BBY02.js"></script>
     <script src="./scripts/skeleton.js"></script>
-
+    <script src="./scripts/joinedEvents.js"></script>
 </body>
 
 </html>

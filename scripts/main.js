@@ -112,6 +112,11 @@ function navigateToPage() {
     window.location.href = 'addevent.html';  // Redirect to page2.html
 }
 
+// function to navigate to page joinedEvents
+function navigateToPagejoined() {
+    window.location.href = 'joinedEvents.html';  // Redirect to page2.html
+}
+
 //-----------------------------------------------------------------------------------------------
 // this function will update the joiningEvents array
 //if it is hollow makes it solid (on clicl) and adds the event to users's "joiningEvents" array
