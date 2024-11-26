@@ -47,6 +47,21 @@ button {
 }
 
 /*=============================================== Class Selector ===============================================*/
+
+/*============
+* Text style
+* ============
+*/
+
+.info-text {
+    font-size: 1.3rem;
+}
+
+/*============
+* Icon style
+* ============
+*/
+
 .material-icons.md-18 {
     font-size: 18px;
 }
@@ -333,4 +348,21 @@ button:hover {
     text-align: center;
     font-size: 0.875rem;
     background-color: #E5DADA;
+}
+
+/*============
+* calendar.html style
+* ============
+*/
+
+#calender-container {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+
+#calendar {
+    width: 90%;
+    background-color: white;
 }

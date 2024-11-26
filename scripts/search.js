@@ -1,29 +1,83 @@
-function displayCardsDynamically(collection) {
-    let cardTemplate = document.getElementById("eventsCardTemplate");
+// Global filter state
+let currentSort = "newest";
+let currentLocation = null;
 
-    db.collection(collection).get()
-        .then(allEvents => {
-            allEvents.forEach(doc => {
-                const title = doc.data().title;
-                const description = doc.data().description;
-                const time = doc.data().time;
+// Function to fetch and display filtered and sorted events
+function queryDatabase(query = "") {
+    const eventsContainer = document.getElementById("events-go-here");
+    eventsContainer.innerHTML = ""; // Clear existing cards
+
+    let queryLower = query.toLowerCase();
+
+    db.collection("events").get()
+        .then(snapshot => {
+            let events = [];
+
+            snapshot.forEach(doc => {
+                const data = doc.data();
                 const docID = doc.id;
 
-                let newcard = cardTemplate.content.cloneNode(true);
-                newcard.querySelector('.card-title').innerHTML = title;
-                newcard.querySelector('.card-length').innerHTML = time || "N/A";
-                newcard.querySelector('.card-text').innerHTML = description || "No description available.";
-                newcard.querySelector('a').href = "eachEvent.html?docID=" + docID;
+                // Apply text search
+                if (query && !data.title.toLowerCase().includes(queryLower)) return;
 
-                document.getElementById(collection + "-go-here").appendChild(newcard);
+                // Apply location filter
+                if (currentLocation && currentLocation !== "all" && data.location !== currentLocation) return;
+
+                events.push({ id: docID, ...data });
+            });
+
+            // Apply sorting
+            if (currentSort === "newest") {
+                events.sort((a, b) => new Date(b.time) - new Date(a.time));
+            } else if (currentSort === "oldest") {
+                events.sort((a, b) => new Date(a.time) - new Date(b.time));
+            } else if (currentSort === "title-asc") {
+                events.sort((a, b) => a.title.localeCompare(b.title));
+            } else if (currentSort === "title-desc") {
+                events.sort((a, b) => b.title.localeCompare(a.title));
+            }
+
+            // Display events
+            if (events.length === 0) {
+                eventsContainer.innerHTML = "<p>No matching events found.</p>";
+                return;
+            }
+
+            events.forEach(event => {
+                let newcard = document.getElementById("eventsCardTemplate").content.cloneNode(true);
+                newcard.querySelector('.card-title').innerHTML = event.title;
+                newcard.querySelector('.card-length').innerHTML = event.time || "N/A";
+                newcard.querySelector('.card-text').innerHTML = event.description || "No description available.";
+                newcard.querySelector('a').href = "eachEvent.html?docID=" + event.id;
+
+                eventsContainer.appendChild(newcard);
             });
         })
         .catch(error => console.error("Error fetching events:", error));
 }
 
-displayCardsDynamically("events");
+// Event listeners for dropdown filters
+document.getElementById("order-filter").addEventListener("click", (event) => {
+    const sortOption = event.target.getAttribute("data-sort");
+    if (sortOption) {
+        currentSort = sortOption === "all" ? "newest" : sortOption;
+        const orderButton = document.getElementById("order-filter-button");
+        orderButton.textContent = `Order by: ${sortOption === "all" ? "Newest" : event.target.textContent}`;
+        queryDatabase(document.getElementById('search-bar').value.trim());
+    }
+});
 
-// Search functionality
+document.getElementById("location-filter").addEventListener("click", (event) => {
+    const locationOption = event.target.getAttribute("data-location");
+    if (locationOption) {
+        currentLocation = locationOption === "all" ? null : locationOption;
+        const locationButton = document.getElementById("location-filter-button");
+        locationButton.textContent = `Location: ${locationOption === "all" ? "All" : locationOption}`;
+        queryDatabase(document.getElementById('search-bar').value.trim());
+    }
+});
+
+// Search bar and button listeners
 document.getElementById('search-bar').addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         event.preventDefault();
@@ -31,55 +85,25 @@ document.getElementById('search-bar').addEventListener('keydown', function (even
     }
 });
 
-//Listener for Search button
 document.getElementById('search-button').addEventListener('click', function () {
     const searchBar = document.getElementById('search-bar');
     queryDatabase(searchBar.value.trim());
 });
 
-//Query based on the text
-function queryDatabase(query) {
-    const eventsContainer = document.getElementById("events-go-here");
-    if (!query) {
-        eventsContainer.innerHTML = "";
-        displayCardsDynamically("events");
-        return;
-    }
+// Initialize the event container with all events on page load
+document.addEventListener('DOMContentLoaded', () => {
+    firebase.auth().onAuthStateChanged(async (user) => {
+        if (user) {
+            currentUserID = user.uid;
 
-    console.log("Querying database with:", query);
-
-    eventsContainer.innerHTML = ""; // Clear existing cards
-
-    const queryLower = query.toLowerCase(); // Convert input to lowercase
-
-    // Fetch all events from the Firestore database
-    db.collection("events").get()
-        .then(snapshot => {
-            let matches = 0; // Counter to check if any results match
-            snapshot.forEach(doc => {
-                const title = doc.data().title || ""; // Ensure field exists
-                const description = doc.data().description || "";
-                const time = doc.data().time || "N/A";
-                const docID = doc.id;
-
-                // Check if the title (case-insensitive) contains the query
-                if (title.toLowerCase().includes(queryLower)) {
-                    matches++;
-
-                    // Create and display a new card
-                    let newcard = document.getElementById("eventsCardTemplate").content.cloneNode(true);
-                    newcard.querySelector('.card-title').innerHTML = title;
-                    newcard.querySelector('.card-length').innerHTML = time;
-                    newcard.querySelector('.card-text').innerHTML = description;
-                    newcard.querySelector('a').href = "eachEvent.html?docID=" + docID;
-
-                    eventsContainer.appendChild(newcard);
-                }
-            });
-
-            if (matches === 0) {
-                eventsContainer.innerHTML = "<p>No matching events found.</p>";
+            // Fetch user's joined events
+            const userDoc = await db.collection("users").doc(currentUserID).get();
+            if (userDoc.exists) {
+                userJoinedEvents = userDoc.data().joiningEvents || [];
             }
-        })
-        .catch(error => console.error("Error fetching events:", error));
-}
+        }
+
+        // Display all events on page load
+        queryDatabase();
+    });
+});

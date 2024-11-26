@@ -1,6 +1,3 @@
-// Reference to Firestore
-const db = firebase.firestore();
-
 // Perform Search
 function performSearch() {
     const query = document.getElementById('search-input').value.toLowerCase();

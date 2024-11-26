@@ -74,30 +74,35 @@
     </div>
 
     <div id="filter-container">
+        <!-- Dropdown Filters -->
         <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Order by
+            <button id="order-filter-button" class="btn btn-secondary dropdown-toggle" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Order by: Newest
             </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Newest</a></li>
-                <li><a class="dropdown-item" href="#">Oldest</a></li>
-                <li><a class="dropdown-item" href="#">Title (Ascending)</a></li>
-                <li><a class="dropdown-item" href="#">Title (Descending)</a></li>
+            <ul class="dropdown-menu" id="order-filter">
+                <li><a class="dropdown-item" href="#" data-sort="newest">Newest</a></li>
+                <li><a class="dropdown-item" href="#" data-sort="oldest">Oldest</a></li>
+                <li><a class="dropdown-item" href="#" data-sort="title-asc">Title (Ascending)</a></li>
+                <li><a class="dropdown-item" href="#" data-sort="title-desc">Title (Descending)</a></li>
             </ul>
         </div>
         <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Location
+            <button id="location-filter-button" class="btn btn-secondary dropdown-toggle" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Location: All
             </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Burnaby</a></li>
-                <li><a class="dropdown-item" href="#">Surrey</a></li>
-                <li><a class="dropdown-item" href="#">Langley</a></li>
+            <ul class="dropdown-menu" id="location-filter">
+                <li><a class="dropdown-item" href="#" data-location="Burnaby">Burnaby</a></li>
+                <li><a class="dropdown-item" href="#" data-location="Surrey">Surrey</a></li>
+                <li><a class="dropdown-item" href="#" data-location="Langley">Langley</a></li>
+                <li><a class="dropdown-item" href="#" data-location="all">All</a></li>
             </ul>
         </div>
     </div>
+
+
+
 
     <!-- Event Cards Section -->
     <div class="event-container mx-4">

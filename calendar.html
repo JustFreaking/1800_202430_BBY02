@@ -32,30 +32,39 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
     <!-------------------------------------------->
-
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     <link rel="stylesheet" href="./styles/style.css">
+    <!-- Include FullCalendar CSS and JS -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+
+
 
 </head>
 
 <body>
-    <template id="eventsCardTemplate">
-        <div class="card py-2 mx-2">
-            <!-- <img class="card-image card-img-top" src=" ..." alt="..." /> -->
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-length">placeholder</p>
-                <br/>
-                <p class="card-text">
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                </p>
-                <a class="btn btn-primary card-href">Read more ...</a>
+    <!-- Modal -->
+    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Event Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalDescription">Event Description</p>
+                    <p><strong>Owner:</strong> <span id="modalOwner"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <a id="viewEventButton" href="#" class="btn btn-primary">View Event</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
-    </template>
+    </div>
+
+
     <!------------------------------>
     <!-- Your HTML Layout go here -->
     <!------------------------------>
@@ -65,42 +74,21 @@
 
 
     <!-- the body of your page goes here -->
-    <div id="search-container">
-        <h1 class="m-4" id="event-title">Events</h1>
-        <textarea id="search-bar" placeholder="Search event by title"></textarea>
-        <button class="btn btn-primary fixed-size-button btn-lg start-0 end-0 m-3" id="search-button">Search</button>
+
+    <div id="calendar-info-container" class="p-3 d-flex justify-content-center">
+        <label class="form-check-label px-5">
+            <input type="radio" name="eventFilter" value="all" class="form-check-input" checked> Show All Events
+        </label>
+        <label class="form-check-label px-5">
+            <input type="radio" name="eventFilter" value="joined" class="form-check-input"> My Joined Events
+        </label>
+        <label class="form-check-label px-5">
+            <input type="radio" name="eventFilter" value="created" class="form-check-input"> Created by Me
+        </label>
     </div>
 
-    <div id="filter-container">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Order by
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Newest</a></li>
-                <li><a class="dropdown-item" href="#">Oldest</a></li>
-                <li><a class="dropdown-item" href="#">Title (Ascending)</a></li>
-                <li><a class="dropdown-item" href="#">Title (Descending)</a></li>
-            </ul>
-        </div>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Location
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Burnaby</a></li>
-                <li><a class="dropdown-item" href="#">Surrey</a></li>
-                <li><a class="dropdown-item" href="#">Langley</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Here is the container for cards  -->
-    <div class="event-container mx-4">
-        <div id="events-go-here" class="row row-cols-auto">
-        </div>
+    <div id="calender-container" class="p-5">
+        <div id="calendar" class="p-5 border border-5 border-dark rounded"></div>
     </div>
 
     <!-- footer goes here-->
@@ -111,7 +99,7 @@
     <!---------------------------------------------->
     <script src="./scripts/firebaseAPI_BBY02.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/events.js"></script>
+    <script src="./scripts/calendar.js"></script>
 
 </body>
 
