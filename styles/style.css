@@ -360,3 +360,11 @@ button:hover {
     margin-top: 10%;
     width: fit-content;
 }
+
+/* Styling add event page*/
+
+.eventForm{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}

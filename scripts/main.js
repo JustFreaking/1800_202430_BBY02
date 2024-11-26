@@ -32,22 +32,23 @@ function insertNameFromFirestore() {
     })
 }
 
-// function writeEvents() {
-//     //define a variable for the collection you want to create in Firestore to populate data
-//     var eventsRef = db.collection("events");
+function writeEvents() {
+    //define a variable for the collection you want to create in Firestore to populate data
+    var eventsRef = db.collection("events");
 
-//     eventsRef.add({
-//         title: "Halloween craft makers", //replace with your own event
-//         location: "Hasting community Center, 201 Hasting Ave, BC, V3K 0C4",
-//         time: "Nov10",
-//         description: "A lovely place for kids to make Halloween crafts",
-//         owner: "Parvaneh",          //number value
-//         participants: "Parvaneh",       //number value
-//         number: 1,
-//         reviews: "Nice event",
-//         last_updated: firebase.firestore.FieldValue.serverTimestamp()  //current system time
-//     });
-// }
+    eventsRef.add({
+        title: "Halloween craft makers", //replace with your own event
+        city: Burnaby,
+        address: "Hasting community Center, 201 Hasting Ave, BC, V3K 0C4",
+        time: "Nov10",
+        description: "A lovely place for kids to make Halloween crafts",
+        owner: "Parvaneh",          //number value
+        participants: "Parvaneh",       //number value
+        number: 1,
+        reviews: "Nice event",
+        last_updated: firebase.firestore.FieldValue.serverTimestamp()  //current system time
+    });
+}
 
 //------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from
