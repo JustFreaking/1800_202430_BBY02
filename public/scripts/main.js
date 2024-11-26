@@ -71,9 +71,27 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-length').innerHTML = time;
                 newcard.querySelector('.card-text').innerHTML = description;
                 newcard.querySelector('.card-attend').innerHTML = score;
-                newcard.querySelector('a').href = "/html/eachEvent.html?docID=" + docID;
-                newcard.querySelector('i').id = 'save-' + docID;   //guaranteed to be unique
-                newcard.querySelector('i').onclick = () => updateCheckbox(docID);
+                newcard.querySelector('a').href = "eachEvent.html?docID=" + docID;
+                let checkboxIcon = newcard.querySelector('i');
+                checkboxIcon.id = 'save-' + docID;
+
+                 displayCheckbox(docID);
+                 function displayCheckbox(eventDocID) {
+                     currentUser.get().then(doc => {
+                         console.log(doc.data().joiningEvents);   //debug
+                         currentJoiningEvents = doc.data().joiningEvents;
+                         if (currentJoiningEvents && currentJoiningEvents.includes(eventDocID)) {
+                            checkboxIcon.innerHTML = 'check_box';
+                            console.log("Hi");
+
+                         } else {
+                            checkboxIcon.innerHTML = 'check_box_outline_blank';
+                         }
+                     }).catch(error => {
+                         console.error("Error getting user data:", error);
+                     });
+                 }
+                 checkboxIcon.onclick = () => updateCheckbox(docID);
 
 
                 //attach to gallery, Example: "hikes-go-here"
