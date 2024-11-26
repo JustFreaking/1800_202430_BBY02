@@ -341,27 +341,82 @@ aside a:hover {
 }
 
 #custom-bg {
-    background-color: #D98C27;
+    background-color: var(--primary-color);
 }
 
-#navbarPlaceholder {
-    max-height: 10vh;
+/*===============================================
+  Media Queries
+================================================*/
+
+/* Smartphones (max-width: 576px) */
+@media (max-width: 576px) {
+    h1 {
+        font-size: 5vw;
+        text-align: center;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    #search-bar {
+        width: 90%;
+    }
+
+    .banner {
+        flex-direction: column;
+        height: auto;
+        gap: 2rem;
+    }
+
+    .profile-sidebar, .profile-content {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
 }
 
-#navbarSupportedContent {
-    background-color: #D98C27;
-    transition: background-color 0.3s ease-in-out;
-    border-radius: 5px;
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 5vw;
+    }
+
+    .navbar {
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .card {
+        width: calc(50% - 1rem);
+    }
+
+    .profile-sidebar {
+        width: 30%;
+    }
+
+    .profile-content {
+        width: 70%;
+    }
 }
 
-#footerPlaceholder {
-    background-color: #f8f9fa;
-    padding: 1rem;
-    text-align: center;
-    font-size: 0.875rem;
-    background-color: #E5DADA;
-}
+/* Small Laptops (max-width: 992px) */
+@media (max-width: 992px) {
+    .card {
+        width: calc(33.33% - 1rem);
+    }
 
-.card-attend{
-    font-weight: bold;
+    .banner {
+        height: 45vh;
+    }
 }
