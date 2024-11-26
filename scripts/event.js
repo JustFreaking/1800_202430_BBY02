@@ -64,3 +64,4 @@ function displayEvent(event) {
         </div>`;
     eventsContainer.insertAdjacentHTML('beforeend', cardHTML);
 }
+

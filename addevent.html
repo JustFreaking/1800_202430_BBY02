@@ -47,12 +47,12 @@
     <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
-
+    <h1>Add a new event or play-date</h1>
     <!-- the body of your page goes here -->
     <!-- stuff -->
     <div class="container">
         <br>
-        <h1>Add a new event or play-date</h1>
+
         <br>
         <form id="eventForm">
             <div class="form-group">
@@ -60,9 +60,33 @@
                 <input type="text" class="form-control" id="title" placeholder="Title">
             </div><br>
 
+            <!-- <div class="form-group">
+                <label for="exampleFormControlInput1">Add the City</label>
+                <input type="text" class="form-control" id="city" placeholder="City">
+            </div><br> -->
+
+            <label for="city"></label>
+            <select id="city" name="city" required>
+            <option value="" disabled selected>Choose the city</option>
+              <option value="vancouver">Vancouver</option>
+              <option value="victoria">Victoria</option>
+              <option value="surrey">Surrey</option>
+              <option value="kelowna">Kelowna</option>
+              <option value="richmond">Richmond</option>
+              <option value="burnaby">Burnaby</option>
+              <option value="abbotsford">Abbotsford</option>
+              <option value="kamloops">Kamloops</option>
+              <option value="nanaimo">Nanaimo</option>
+              <option value="langley">Langley</option>
+              <option value="delta">Delta</option>
+              <!-- Add more cities as needed -->
+            </select>
+          
+<br/>
+<br/>
             <div class="form-group">
-                <label for="exampleFormControlInput1">Add the Location</label>
-                <input type="text" class="form-control" id="location" placeholder="Location">
+                <label for="exampleFormControlInput1">Add Street Address</label>
+                <input type="text" class="form-control" id="address" placeholder="Street Address">
             </div><br>
 
             <label for="time">Time</label>
@@ -72,14 +96,6 @@
                 <label for="exampleFormControlInput1">Add a description</label>
                 <input type="text" class="form-control" id="description" placeholder="Description">
             </div><br>
-
-            <!-- <div class="form-group">
-                <label for="exampleFormControlInput1">Add the Time</label>
-                <input type="text" class="form-control" id="time" placeholder="Time">
-            </div><br>  -->
-
-            <!-- <label for="photo">Upload Photo (optional):</label>
-            <input type="file" id="photo" accept="image/*"><br><br> -->
 
             <div class="form-group">
                 <br>
@@ -101,6 +117,7 @@
     <script src="./scripts/firebaseAPI_BBY02.js"></script>
     <script src="scripts/event.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/addevent.js"></script>
 
 
 </body>

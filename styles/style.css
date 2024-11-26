@@ -1,11 +1,33 @@
-/*=============================================== Element Selector ===============================================*/
-html,
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #E5DADA;
+:root {
+  --primary-color: #D98C27; 
+  --secondary-color: #333; 
+  --background-color: #f4f4f9; 
 }
 
+/*===============================================
+  Global Styles
+================================================*/
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    height: 100%;
+    font-family: 'Open Sans', Arial, sans-serif;
+}
+
+.content {
+    flex-grow: 1;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/*===============================================
+  Typography
+================================================*/
 h1 {
     width: auto;
     flex: none;
@@ -13,19 +35,80 @@ h1 {
     font-size: 3vw;
 }
 
-footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
-    margin-right: 5%;
+.text-center {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--secondary-color);
 }
 
+/*===============================================
+  Footer
+================================================*/
+footer {
+    padding: 2rem 1rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+footer a {
+    color: #ffe0b2;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/*===============================================
+  Buttons
+================================================*/
+button, .btn, .add-event-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover, .btn:hover, .add-event-button:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+}
+
+.btn-secondary, .btn-info {
+    color: #fff;
+    border: none;
+    transition: opacity 0.3s;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+}
+
+.btn-secondary:hover, .btn-info:hover {
+    opacity: 0.9;
+}
+
+/*===============================================
+  Links
+================================================*/
 aside a {
-    color: #333;
+    color: var(--secondary-color);
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s, text-decoration 0.3s;
 }
 
 aside a:hover {
@@ -33,20 +116,9 @@ aside a:hover {
     text-decoration: underline;
 }
 
-button {
-    margin: 1vw;
-    height: auto;
-    align-items: center;
-    background-color: orange;
-    border: none;
-    padding: 10px 24px;
-    text-align: center;
-    border-radius: 6px;
-
-    font-size: 1.5vw;
-}
-
-/*=============================================== Class Selector ===============================================*/
+/*===============================================
+  Icons
+================================================*/
 
 /*============
 * Text style
@@ -62,42 +134,53 @@ button {
 * ============
 */
 
-.material-icons.md-18 {
-    font-size: 18px;
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+.material-icons {
+    font-size: inherit;
 }
 
-.material-icons.md-24 {
-    font-size: 24px;
-}
-
-.material-icons.md-36 {
-    font-size: 36px;
-}
-
-.material-icons.md-48 {
-    font-size: 48px;
-}
-
+/*===============================================
+  Responsive Elements
+================================================*/
 .responsive {
     width: 100%;
     height: auto;
 }
 
+/*===============================================
+  Cards
+================================================*/
 .card {
-    margin-bottom: .7rem;
+    margin-bottom: 0.7rem;
     width: calc(20% - 1rem);
     box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-attend {
+    font-weight: bold;
 }
 
 .container {
     margin: 1rem;
 }
 
-/*============
-* Welcome Banner style
-* ============
-*/
-
+/*===============================================
+  Banner
+================================================*/
 #welcome-message {
     text-align: center;
     filter: blur(0px);
@@ -119,34 +202,23 @@ button {
 .banner {
     display: flex;
     justify-content: center;
-    background-image: url(../images/banner.jpg);
-    background-size: 100% auto;
-    width: 100%;
-    height: 50vh;
     align-items: center;
+    background-image: url(../images/banner.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
     gap: 10vw;
-}
-
-.text-center {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #333;
 }
 
 .banner .divider {
     width: 2px;
-    /* Line thickness */
     height: 50%;
-    /* Line height */
     background-color: lightgray;
-    /* Line color */
 }
 
-/*============
-* Nav-bar style
-* ============
-*/
-
+/*===============================================
+  Navbar
+================================================*/
 .navbar-logo {
     width: 5vw;
     height: auto;
@@ -155,13 +227,16 @@ button {
 
 .navbar {
     max-height: 10vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    padding: 0.5rem;
+    transition: background-color 0.3s ease-in-out;
 }
 
-/*============
-* Profile style
-* ============
-*/
-
+/*===============================================
+  Profile
+================================================*/
 .profile-header {
     font-size: 2rem;
     font-weight: bold;
@@ -171,11 +246,11 @@ button {
 .profile-sidebar {
     width: 20%;
     font-size: 1.2rem;
-    border-right: 1px solid #ddd;
     display: block;
-    padding: 0.5rem 0;
+    padding: 1rem;
+    border-right: 1px solid #ddd;
     font-weight: bold;
-    color: #333;
+    color: var(--secondary-color);
 }
 
 .profile-content {
@@ -200,76 +275,27 @@ button {
     color: #999;
 }
 
-/*============
-* Form style
-* ============
-*/
-
+/*===============================================
+  Forms
+================================================*/
 .form-control {
-    background-color: #f8f9fa;
+    background-color: #fff;
     border: 1px solid #ddd;
+    border-radius: 8px;
     padding: 0.75rem;
     font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .form-control:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(255, 112, 67, 0.5);
 }
 
-/*============
-* Button style
-* ============
-*/
-
-.fixed-size-button {
-    width: 200px;
-    height: 50px;
-    font-size: 20px;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    color: #fff;
-    border: none;
-}
-
-.btn-info {
-    background-color: #17a2b8;
-    color: #fff;
-    border: none;
-}
-
-.btn-secondary:hover,
-.btn-info:hover {
-    opacity: 0.9;
-}
-
-.d-flex button {
-    width: 120px;
-    font-size: 1rem;
-}
-
-.add-event-button {
-    background-color: orange;
-    border: none;
-}
-
-.add-event-button:hover {
-    background-color: #d98804;
-}
-
-button:hover {
-    background-color: #d98804;
-}
-
-/*=============================================== ID Selector ===============================================*/
-
-/*============
-* events.html style
-* ============
-*/
-
+/*===============================================
+  Events
+================================================*/
 #search-container {
     align-items: center;
     display: flex;
@@ -292,6 +318,8 @@ button:hover {
     max-height: 10vh;
     width: 75%;
     height: 5vh;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 #filter-container {
@@ -303,25 +331,24 @@ button:hover {
 }
 
 .event-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
 }
 
 .review-button {
-  margin-top: auto;
-  align-self: flex-end;
+    margin-top: auto;
+    align-self: flex-end;
 }
 
 .reviewButton {
-  font-size: 16px;
+    font-size: 16px;
 }
-/*============
-* style
-* ============
-*/
 
+/*===============================================
+  Buttons Group
+================================================*/
 #buttons {
     display: flex;
     justify-content: center;
@@ -329,40 +356,82 @@ button:hover {
 }
 
 #custom-bg {
-    background-color: #D98C27;
+    background-color: var(--primary-color);
 }
 
-#navbarPlaceholder {
-    max-height: 10vh;
+/*===============================================
+  Media Queries
+================================================*/
+
+/* Smartphones (max-width: 576px) */
+@media (max-width: 576px) {
+    h1 {
+        font-size: 5vw;
+        text-align: center;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    #search-bar {
+        width: 90%;
+    }
+
+    .banner {
+        flex-direction: column;
+        height: auto;
+        gap: 2rem;
+    }
+
+    .profile-sidebar, .profile-content {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
 }
 
-#navbarSupportedContent {
-    background-color: #D98C27;
-    transition: background-color 0.3s ease-in-out;
-    border-radius: 5px;
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 5vw;
+    }
+
+    .navbar {
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .card {
+        width: calc(50% - 1rem);
+    }
+
+    .profile-sidebar {
+        width: 30%;
+    }
+
+    .profile-content {
+        width: 70%;
+    }
 }
 
-#footerPlaceholder {
-    background-color: #f8f9fa;
-    padding: 1rem;
-    text-align: center;
-    font-size: 0.875rem;
-    background-color: #E5DADA;
-}
+/* Small Laptops (max-width: 992px) */
+@media (max-width: 992px) {
+    .card {
+        width: calc(33.33% - 1rem);
+    }
 
-/*============
-* calendar.html style
-* ============
-*/
-
-#calender-container {
-    display: flex;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
-}
-
-#calendar {
-    width: 90%;
-    background-color: white;
+    .banner {
+        height: 45vh;
+    }
 }
