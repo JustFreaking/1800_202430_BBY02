@@ -1,6 +1,8 @@
+console.log("Welcome to joinedevents");
+
 //Global variable pointing to the current user's Firestore document
 var currentUser;
-
+var user_joinedEvents;
 //Function that calls everything needed for the main page  
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
@@ -10,16 +12,19 @@ function doAll() {
 
             // the following functions are always called when someone is logged in
             insertNameFromFirestore();
+            
+            insertjoiningEventsFirestore();
             displayCardsDynamically("events");
+
+           
         } else {
             // No user is signed in.
             console.log("No user is signed in");
-            window.location.href = "/html/login.html";
+            window.location.href = "login.html";
         }
     });
 }
 doAll();
-
 
 // Insert name function using the global variable "currentUser"
 function insertNameFromFirestore() {
@@ -32,35 +37,25 @@ function insertNameFromFirestore() {
     })
 }
 
-function writeEvents() {
-    //define a variable for the collection you want to create in Firestore to populate data
-    var eventsRef = db.collection("events");
-
-    eventsRef.add({
-        title: "Halloween craft makers", //replace with your own event
-        city: Burnaby,
-        address: "Hasting community Center, 201 Hasting Ave, BC, V3K 0C4",
-        time: "Nov10",
-        description: "A lovely place for kids to make Halloween crafts",
-        owner: "Parvaneh",          //number value
-        participants: "Parvaneh",       //number value
-        number: 1,
-        reviews: "Nice event",
-        last_updated: firebase.firestore.FieldValue.serverTimestamp()  //current system time
-    });
+// Insert joiningEvents function using the global variable "currentUser" to insert array of joiningevents from firestore. 
+function insertjoiningEventsFirestore() {
+    currentUser.get().then(userDoc => {
+        //get the user name
+        user_joinedEvents = userDoc.data().joiningEvents || [];
+        console.log(user_joinedEvents);
+    })
 }
 
-//------------------------------------------------------------------------------
-// Input parameter is a string representing the collection we are reading from
-//------------------------------------------------------------------------------
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("eventsCardTemplate"); 
-    db.collection(collection).get()  
+    db.collection(collection)
+    .get()  
         .then(allEvents => {
             var i = 1; 
             allEvents.forEach(doc => { 
-                var title = doc.data().title;  
-                var score = doc.data().scores;   
+                const eventId = doc.id;
+                if (user_joinedEvents.includes(eventId)){
+                var title = doc.data().title;     
                 var description = doc.data().description; 
                 var time = doc.data().time; 
                 var docID = doc.id;
@@ -70,54 +65,18 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-length').innerHTML = time;
                 newcard.querySelector('.card-text').innerHTML = description;
-                newcard.querySelector('.card-attend').innerHTML = score;
                 newcard.querySelector('a').href = "eachEvent.html?docID=" + docID;
-                let checkboxIcon = newcard.querySelector('i');
-                checkboxIcon.id = 'save-' + docID;
-
-                 displayCheckbox(docID);
-                 function displayCheckbox(eventDocID) {
-                     currentUser.get().then(doc => {
-                         console.log(doc.data().joiningEvents);   //debug
-                         currentJoiningEvents = doc.data().joiningEvents;
-                         if (currentJoiningEvents && currentJoiningEvents.includes(eventDocID)) {
-                            checkboxIcon.innerHTML = 'check_box';
-                            console.log("Hi");
-
-                         } else {
-                            checkboxIcon.innerHTML = 'check_box_outline_blank';
-                         }
-                     }).catch(error => {
-                         console.error("Error getting user data:", error);
-                     });
-                 }
-                 checkboxIcon.onclick = () => updateCheckbox(docID);
+                newcard.querySelector('i').id = 'save-' + docID;   //guaranteed to be unique
+                newcard.querySelector('i').onclick = () => updateCheckbox(docID);
 
 
                 //attach to gallery, Example: "hikes-go-here"
                 document.getElementById(collection + "-go-here").appendChild(newcard);
-
-                //i++;   //Optional: iterate variable to serve as unique ID
+                }
             })
         })
+    
 }
-
-
-
-function navigateToPage() {
-    window.location.href = '/html/addevent.html';  // Redirect to page2.html
-}
-
-// function to navigate to page joinedEvents
-function navigateToPagejoined() {
-    window.location.href = '/html/joinedEvent.html';  // Redirect to page2.html
-}
-
-//-----------------------------------------------------------------------------------------------
-// this function will update the joiningEvents array
-//if it is hollow makes it solid (on clicl) and adds the event to users's "joiningEvents" array
-// if it is solid, makes it hollow, and removes the event from the users's "joiningEvents" array
-//-----------------------------------------------------------------------------------------------
 
 function updateCheckbox(eventDocID) {
     //alert ("inside update bookmark");        //debug
@@ -166,4 +125,3 @@ function updateCheckbox(eventDocID) {
         }
     })
 }
-

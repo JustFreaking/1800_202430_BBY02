@@ -34,43 +34,12 @@
     <!-------------------------------------------->
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
-<<<<<<<< HEAD:calendar.html
-    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-    <link rel="stylesheet" href="./styles/style.css">
-    <!-- Include FullCalendar CSS and JS -->
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-
-
-========
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
      <link rel="stylesheet" href="./styles/style.css">
->>>>>>>> 9bdebcb6d297139fbe8e094e78a4e6943c1187b3:joinedEvents.html
 
 </head>
 
 <body>
-<<<<<<<< HEAD:calendar.html
-    <!-- Modal -->
-    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitle">Event Title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p id="modalDescription">Event Description</p>
-                    <p><strong>Owner:</strong> <span id="modalOwner"></span></p>
-                </div>
-                <div class="modal-footer">
-                    <a id="viewEventButton" href="#" class="btn btn-primary">View Event</a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-========
 
     <!-- Templates for general use, not displayed -->
 <template id="eventsCardTemplate">
@@ -91,7 +60,6 @@
         </div>
     </div>
 </template>
->>>>>>>> 9bdebcb6d297139fbe8e094e78a4e6943c1187b3:joinedEvents.html
 
     <!------------------------------>
     <!-- Your HTML Layout go here -->
@@ -101,25 +69,6 @@
 
 
     <!-- the body of your page goes here -->
-<<<<<<<< HEAD:calendar.html
-
-    <div id="calendar-info-container" class="p-3 d-flex justify-content-center">
-        <label class="form-check-label px-5">
-            <input type="radio" name="eventFilter" value="all" class="form-check-input" checked> Show All Events
-        </label>
-        <label class="form-check-label px-5">
-            <input type="radio" name="eventFilter" value="joined" class="form-check-input"> My Joined Events
-        </label>
-        <label class="form-check-label px-5">
-            <input type="radio" name="eventFilter" value="created" class="form-check-input"> Created by Me
-        </label>
-    </div>
-
-    <div id="calender-container" class="p-5">
-        <div id="calendar" class="p-5 border border-5 border-dark rounded"></div>
-    </div>
-
-========
 
 
      <div class="container">
@@ -131,7 +80,6 @@
             </div>
         </div>
     </div>
->>>>>>>> 9bdebcb6d297139fbe8e094e78a4e6943c1187b3:joinedEvents.html
     <!-- footer goes here-->
     <nav id="footerPlaceholder"></nav>
 
@@ -140,12 +88,7 @@
     <!---------------------------------------------->
     <script src="./scripts/firebaseAPI_BBY02.js"></script>
     <script src="./scripts/skeleton.js"></script>
-<<<<<<<< HEAD:calendar.html
-    <script src="./scripts/calendar.js"></script>
-
-========
-    <script src="./scripts/joinedEvents.js"></script>
->>>>>>>> 9bdebcb6d297139fbe8e094e78a4e6943c1187b3:joinedEvents.html
+    <script src="./scripts/joinedEvent.js"></script>
 </body>
 
 </html>
