@@ -1,0 +1,437 @@
+:root {
+  --primary-color: #D98C27; 
+  --secondary-color: #333; 
+  --background-color: #f4f4f9; 
+}
+
+/*===============================================
+  Global Styles
+================================================*/
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    height: 100%;
+    font-family: 'Open Sans', Arial, sans-serif;
+}
+
+.content {
+    flex-grow: 1;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/*===============================================
+  Typography
+================================================*/
+h1 {
+    width: auto;
+    flex: none;
+    color: #E5DADA;
+    font-size: 3vw;
+}
+
+.text-center {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+/*===============================================
+  Footer
+================================================*/
+footer {
+    padding: 2rem 1rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+footer a {
+    color: #ffe0b2;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/*===============================================
+  Buttons
+================================================*/
+button, .btn, .add-event-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover, .btn:hover, .add-event-button:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+}
+
+.btn-secondary, .btn-info {
+    color: #fff;
+    border: none;
+    transition: opacity 0.3s;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+}
+
+.btn-secondary:hover, .btn-info:hover {
+    opacity: 0.9;
+}
+
+/*===============================================
+  Links
+================================================*/
+aside a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+aside a:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+/*===============================================
+  Icons
+================================================*/
+
+/*============
+* Text style
+* ============
+*/
+
+.info-text {
+    font-size: 1.3rem;
+}
+
+/*============
+* Icon style
+* ============
+*/
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+.material-icons {
+    font-size: inherit;
+}
+
+/*===============================================
+  Responsive Elements
+================================================*/
+.responsive {
+    width: 100%;
+    height: auto;
+}
+
+/*===============================================
+  Cards
+================================================*/
+.card {
+    margin-bottom: 0.7rem;
+    width: calc(20% - 1rem);
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-attend {
+    font-weight: bold;
+}
+
+.container {
+    margin: 1rem;
+}
+
+/*===============================================
+  Banner
+================================================*/
+#welcome-message {
+    text-align: center;
+    filter: blur(0px);
+    font-size: 6vw;
+}
+
+.welcome-container {
+    background-image: url(/img/welcome.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.welcome-container::before {
+    filter: blur(4px);
+    z-index: -1;
+}
+
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(/img/banner.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+    gap: 10vw;
+}
+
+.banner .divider {
+    width: 2px;
+    height: 50%;
+    background-color: lightgray;
+}
+
+/*===============================================
+  Navbar
+================================================*/
+.navbar-logo {
+    width: 5vw;
+    height: auto;
+    object-fit: contain;
+}
+
+.navbar {
+    max-height: 10vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    padding: 0.5rem;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/*===============================================
+  Profile
+================================================*/
+.profile-header {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.profile-sidebar {
+    width: 20%;
+    font-size: 1.2rem;
+    display: block;
+    padding: 1rem;
+    border-right: 1px solid #ddd;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.profile-content {
+    width: 80%;
+    padding: 2rem;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.profile-image svg {
+    width: 70%;
+    height: 70%;
+    color: #999;
+}
+
+/*===============================================
+  Forms
+================================================*/
+.form-control {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(255, 112, 67, 0.5);
+}
+
+/*===============================================
+  Events
+================================================*/
+#search-container {
+    align-items: center;
+    display: flex;
+    height: 15%;
+    width: 100%;
+    justify-content: center;
+}
+
+#event-container {
+    width: 100%;
+}
+
+#event-title {
+    max-width: 15%;
+}
+
+#search-bar {
+    font-size: clamp(14px, 2vw, 24px);
+    resize: none;
+    max-height: 10vh;
+    width: 75%;
+    height: 5vh;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#filter-container {
+    width: 100%;
+    display: flex;
+    height: 10%;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.review-button {
+    margin-top: auto;
+    align-self: flex-end;
+}
+
+.reviewButton {
+    font-size: 16px;
+}
+
+/*===============================================
+  Buttons Group
+================================================*/
+#buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#custom-bg {
+    background-color: var(--primary-color);
+}
+
+/*===============================================
+  Media Queries
+================================================*/
+
+/* Smartphones (max-width: 576px) */
+@media (max-width: 576px) {
+    h1 {
+        font-size: 5vw;
+        text-align: center;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    #search-bar {
+        width: 90%;
+    }
+
+    .banner {
+        flex-direction: column;
+        height: auto;
+        gap: 2rem;
+    }
+
+    .profile-sidebar, .profile-content {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+}
+
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 5vw;
+    }
+
+    .navbar {
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .card {
+        width: calc(50% - 1rem);
+    }
+
+    .profile-sidebar {
+        width: 30%;
+    }
+
+    .profile-content {
+        width: 70%;
+    }
+}
+
+/* Small Laptops (max-width: 992px) */
+@media (max-width: 992px) {
+    .card {
+        width: calc(33.33% - 1rem);
+    }
+
+    .banner {
+        height: 45vh;
+    }
+}

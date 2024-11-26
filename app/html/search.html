@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kidsconnect</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!------------------------>
+    <!-- Required meta tags -->
+    <!------------------------>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!------------------------------------------>
+    <!-- Bootstrap Library CSS JS CDN go here -->
+    <!------------------------------------------>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
+
+    <!-------------------------------------------------------->
+    <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
+    <!-------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+    <!-------------------------------------------->
+    <!-- Other libraries and styles of your own -->
+    <!-------------------------------------------->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!--Template for event cards-->
+    <template id="eventsCardTemplate">
+        <div class="card py-2 mx-2">
+            <!-- <img class="card-image card-img-top" src=" ..." alt="..." /> -->
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-length">placeholder</p>
+                <br />
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
+                <a class="btn btn-primary card-href">Read more ...</a>
+            </div>
+        </div>
+    </template>
+
+    <!-- Navbar -->
+    <nav id="navbarPlaceholder"></nav>
+
+    <!-- Header Section -->
+    <div class="container-fluid text-dark p-5 welcome-container">
+        <div class="container p-5">
+            <h1 class="display-4">Search Events</h1>
+            <hr>
+            <p>Find events that match your interests and needs!</p>
+        </div>
+    </div>
+
+    <div id="search-container" class="mx-auto">
+        <textarea id="search-bar" placeholder="Search event by title"></textarea>
+        <button class="btn btn-primary fixed-size-button btn-lg start-0 end-0 m-3" id="search-button">Search</button>
+    </div>
+
+    <div id="filter-container">
+        <!-- Dropdown Filters -->
+        <div class="dropdown">
+            <button id="order-filter-button" class="btn btn-secondary dropdown-toggle" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Order by: Newest
+            </button>
+            <ul class="dropdown-menu" id="order-filter">
+                <li><a class="dropdown-item" href="#" data-sort="newest">Newest</a></li>
+                <li><a class="dropdown-item" href="#" data-sort="oldest">Oldest</a></li>
+                <li><a class="dropdown-item" href="#" data-sort="title-asc">Title (Ascending)</a></li>
+                <li><a class="dropdown-item" href="#" data-sort="title-desc">Title (Descending)</a></li>
+            </ul>
+        </div>
+        <div class="dropdown">
+            <button id="location-filter-button" class="btn btn-secondary dropdown-toggle" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Location: All
+            </button>
+            <ul class="dropdown-menu" id="location-filter">
+                <li><a class="dropdown-item" href="#" data-location="Burnaby">Burnaby</a></li>
+                <li><a class="dropdown-item" href="#" data-location="Surrey">Surrey</a></li>
+                <li><a class="dropdown-item" href="#" data-location="Langley">Langley</a></li>
+                <li><a class="dropdown-item" href="#" data-location="all">All</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+    <!-- Event Cards Section -->
+    <div class="event-container mx-4">
+        <div id="events-go-here" class="row row-cols-auto">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <nav id="footerPlaceholder"></nav>
+
+    <!---------------------------------------------->
+    <!--       JavaScript functions go here       -->
+    <!---------------------------------------------->
+    <script src="/js/firebaseAPI_BBY02.js"></script>
+    <script src="/js/skeleton.js"></script>
+    <script src="/js/search.js"></script>
+</body>
+
+</html>
