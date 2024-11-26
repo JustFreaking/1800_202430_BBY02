@@ -38,7 +38,8 @@ function writeEvents() {
 
     eventsRef.add({
         title: "Halloween craft makers", //replace with your own event
-        location: "Hasting community Center, 201 Hasting Ave, BC, V3K 0C4",
+        city: Burnaby,
+        address: "Hasting community Center, 201 Hasting Ave, BC, V3K 0C4",
         time: "Nov10",
         description: "A lovely place for kids to make Halloween crafts",
         owner: "Parvaneh",          //number value
@@ -70,7 +71,6 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-length').innerHTML = time;
                 newcard.querySelector('.card-text').innerHTML = description;
                 newcard.querySelector('.card-attend').innerHTML = score;
-                // newcard.querySelector('.card-attendants').innerHTML = score;
                 newcard.querySelector('a').href = "eachEvent.html?docID=" + docID;
                 newcard.querySelector('i').id = 'save-' + docID;   //guaranteed to be unique
                 newcard.querySelector('i').onclick = () => updateCheckbox(docID);

@@ -2,13 +2,14 @@
 function writeEvent() {
     console.log("inside write event");
     let eventTitle = document.getElementById("title").value;
-    let eventLocation = document.getElementById("location").value;
+    let eventCity = document.getElementById("city").value;
+    let eventAddress = document.getElementById("address").value;
     let eventTime = document.getElementById("time").value;
     let eventDescription = document.getElementById("description").value;
 
 
 
-    console.log(eventTitle, eventLocation, eventTime, eventDescription);
+    console.log(eventTitle, eventCity, eventAddress, eventTime, eventDescription);
 
     var user = firebase.auth().currentUser;
     if (user) {
@@ -20,7 +21,8 @@ function writeEvent() {
            
             owner: userID,
             title: eventTitle,
-            location: eventLocation,
+            city: eventCity,
+            address: eventAddress,
             time: eventTime,
             description: eventDescription,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
