@@ -352,3 +352,11 @@ button:hover {
 .card-attend{
     font-weight: bold;
 }
+
+.card {
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    width: fit-content;
+}
