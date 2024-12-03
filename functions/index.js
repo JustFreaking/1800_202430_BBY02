@@ -18,3 +18,9 @@ app.get("/", (req, res) => {
 
 // Export the app as a Firebase Function
 exports.app = functions.https.onRequest(app);
+
+// Start the server on port 8000
+const PORT = 8000;
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});

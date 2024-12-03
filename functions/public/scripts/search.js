@@ -14,14 +14,24 @@ function queryDatabase(query = "") {
             let events = [];
 
             snapshot.forEach(doc => {
-                const data = doc.data();
+                const data = doc.data(); // Ensure data is defined here
                 const docID = doc.id;
 
                 // Apply text search
                 if (query && !data.title.toLowerCase().includes(queryLower)) return;
 
                 // Apply location filter
-                if (currentLocation && currentLocation !== "all" && data.location !== currentLocation) return;
+                // Apply location filter
+                // Apply location filter with safe checks
+                if (
+                    currentLocation &&
+                    currentLocation !== "all" &&
+                    (!data.city || data.city.toLowerCase() !== currentLocation.toLowerCase())
+                ) {
+                    return;
+                }
+
+
 
                 events.push({ id: docID, ...data });
             });
@@ -43,18 +53,36 @@ function queryDatabase(query = "") {
                 return;
             }
 
+            // Function to truncate text to a specific number of words
+            function truncateText(text, maxWords) {
+                const words = text.split(" ");
+                if (words.length > maxWords) {
+                    return words.slice(0, maxWords).join(" ") + " ..."; // Add ellipsis for truncated text
+                }
+                return text; // Return full text if under limit
+            }
+
+            // Update card rendering logic
             events.forEach(event => {
                 let newcard = document.getElementById("eventsCardTemplate").content.cloneNode(true);
+
+                // Truncate the description to a maximum of 20 words
+                const truncatedDescription = truncateText(event.description || "No description available.", 20);
+
+                // Populate card fields
                 newcard.querySelector('.card-title').innerHTML = event.title;
                 newcard.querySelector('.card-length').innerHTML = event.time || "N/A";
-                newcard.querySelector('.card-text').innerHTML = event.description || "No description available.";
+                newcard.querySelector('.card-text').innerHTML = truncatedDescription;
                 newcard.querySelector('a').href = "/html/eachEvent.html?docID=" + event.id;
 
+                // Append the card to the container
                 eventsContainer.appendChild(newcard);
             });
         })
         .catch(error => console.error("Error fetching events:", error));
 }
+
+
 
 // Event listeners for dropdown filters
 document.getElementById("order-filter").addEventListener("click", (event) => {
@@ -70,9 +98,14 @@ document.getElementById("order-filter").addEventListener("click", (event) => {
 document.getElementById("location-filter").addEventListener("click", (event) => {
     const locationOption = event.target.getAttribute("data-location");
     if (locationOption) {
+        // Set the currentLocation to the selected location or null if "all"
         currentLocation = locationOption === "all" ? null : locationOption;
+
+        // Update the button text
         const locationButton = document.getElementById("location-filter-button");
         locationButton.textContent = `Location: ${locationOption === "all" ? "All" : locationOption}`;
+
+        // Re-query the database with the current search term
         queryDatabase(document.getElementById('search-bar').value.trim());
     }
 });

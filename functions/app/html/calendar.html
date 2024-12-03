@@ -63,49 +63,32 @@
         </div>
     </div>
 
-    <!-- Templates for general use, not displayed -->
-    <template id="eventsCardTemplate">
-        <div class="card py-2 mx-2" style="width: 18rem">
-            <!-- <img class="card-image card-img-top" src=" ..." alt="..." /> -->
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-length">placeholder</p>
-                <br />
-                <p class="card-text">
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                </p>
-                <a class="btn btn-primary card-href">Read more ...</a>
-                <br />
-                <br />
-                <p>Join this event <i class="material-icons">check_box_outline_blank</i></p>
-            </div>
-        </div>
-    </template>
-
     <!------------------------------>
     <!-- Your HTML Layout go here -->
     <!------------------------------>
+
     <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
 
     <!-- the body of your page goes here -->
-    <div id="calendar-info-container" class="p-3 d-flex justify-content-center">
-        <label class="form-check-label px-5">
+    <div id="calendar-info-container" class="container-fluid p-1 m-1">
+        <label class="form-check-label px-1">
             <input type="radio" name="eventFilter" value="all" class="form-check-input" checked> Show All Events
         </label>
-        <label class="form-check-label px-5">
+        <label class="form-check-label px-1">
             <input type="radio" name="eventFilter" value="joined" class="form-check-input"> My Joined Events
         </label>
-        <label class="form-check-label px-5">
+        <label class="form-check-label px-1">
             <input type="radio" name="eventFilter" value="created" class="form-check-input"> Created by Me
         </label>
     </div>
-
-    <div id="calender-container" class="p-5">
-        <div id="calendar" class="p-5 border border-5 border-dark rounded"></div>
+    
+    <div id="calender-container" class="container-fluid">
+        <div id="calendar" class="rounded"></div>
     </div>
+    
+
 
     <!-- footer goes here-->
     <nav id="footerPlaceholder"></nav>
@@ -115,11 +98,7 @@
     <!---------------------------------------------->
     <script src="/js/firebaseAPI_BBY02.js"></script>
     <script src="/js/skeleton.js"></script>
-    <script src="/js/calendar.js">
-    </script>
-
-
-    <script src="/js/joinedEvents.js"></script>
+    <script src="/js/calendar.js"></script>
 
 </body>
 

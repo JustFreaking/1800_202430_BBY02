@@ -41,72 +41,88 @@
 <body>
     <!--Template for event cards-->
     <template id="eventsCardTemplate">
-        <div class="card py-2 mx-2">
-            <!-- <img class="card-image card-img-top" src=" ..." alt="..." /> -->
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-length">placeholder</p>
-                <br />
-                <p class="card-text">
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                </p>
-                <a class="btn btn-primary card-href">Read more ...</a>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-2-4 mb-4">
+            <div class="card h-100"> <!-- Ensures uniform height -->
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-length">placeholder</p>
+                    <p class="card-text flex-grow-1">
+                        Some quick example text to build on the card title.
+                    </p>
+                    <a class="btn btn-primary mt-auto card-href">Read more ...</a> <!-- Button stays at the bottom -->
+                </div>
             </div>
         </div>
     </template>
+    
+    
 
     <!-- Navbar -->
     <nav id="navbarPlaceholder"></nav>
 
     <!-- Header Section -->
-    <div class="container-fluid text-dark p-5 welcome-container">
+    <div class="container-fluid text-dark p-5 welcome-container mb-4">
         <div class="container p-5">
             <h1 class="display-4">Search Events</h1>
             <hr>
             <p>Find events that match your interests and needs!</p>
         </div>
     </div>
+    
 
-    <div id="search-container" class="mx-auto">
-        <textarea id="search-bar" placeholder="Search event by title"></textarea>
-        <button class="btn btn-primary fixed-size-button btn-lg start-0 end-0 m-3" id="search-button">Search</button>
-    </div>
-
-    <div id="filter-container">
-        <!-- Dropdown Filters -->
-        <div class="dropdown">
-            <button id="order-filter-button" class="btn btn-secondary dropdown-toggle" type="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Order by: Newest
-            </button>
-            <ul class="dropdown-menu" id="order-filter">
-                <li><a class="dropdown-item" href="#" data-sort="newest">Newest</a></li>
-                <li><a class="dropdown-item" href="#" data-sort="oldest">Oldest</a></li>
-                <li><a class="dropdown-item" href="#" data-sort="title-asc">Title (Ascending)</a></li>
-                <li><a class="dropdown-item" href="#" data-sort="title-desc">Title (Descending)</a></li>
-            </ul>
-        </div>
-        <div class="dropdown">
-            <button id="location-filter-button" class="btn btn-secondary dropdown-toggle" type="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Location: All
-            </button>
-            <ul class="dropdown-menu" id="location-filter">
-                <li><a class="dropdown-item" href="#" data-location="Burnaby">Burnaby</a></li>
-                <li><a class="dropdown-item" href="#" data-location="Surrey">Surrey</a></li>
-                <li><a class="dropdown-item" href="#" data-location="Langley">Langley</a></li>
-                <li><a class="dropdown-item" href="#" data-location="all">All</a></li>
-            </ul>
+    <div id="search-container" class="container-fluid mb-4">
+        <div class="row">
+            <div class="col-12 d-flex">
+                <textarea id="search-bar" placeholder="Search event by title" class="form-control form-control-sm flex-grow-1 me-2"></textarea>
+                <button class="btn btn-primary btn-sm flex-shrink-0" id="search-button">Search</button>
+            </div>
         </div>
     </div>
-
-
-
-
+    
+    <div id="filter-container" class="container-fluid mb-4">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center gap-3">
+                <div class="dropdown">
+                    <button id="order-filter-button" class="btn btn-secondary btn-sm dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Order by: Newest
+                    </button>
+                    <ul class="dropdown-menu" id="order-filter">
+                        <li><a class="dropdown-item" href="#" data-sort="newest">Newest</a></li>
+                        <li><a class="dropdown-item" href="#" data-sort="oldest">Oldest</a></li>
+                        <li><a class="dropdown-item" href="#" data-sort="title-asc">Title (Ascending)</a></li>
+                        <li><a class="dropdown-item" href="#" data-sort="title-desc">Title (Descending)</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button id="location-filter-button" class="btn btn-secondary btn-sm dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Location: All
+                    </button>
+                    <ul class="dropdown-menu" id="location-filter">
+                        <li><a class="dropdown-item" href="#" data-location="all">All</a></li>
+                        <li><a class="dropdown-item" href="#" data-location="Abbotsford">Abbotsford</a></li>
+                        <li><a class="dropdown-item" href="#" data-location="Burnaby">Burnaby</a></li>
+                        <li><a class="dropdown-item" href="#" data-location="Delta">Delta</a></li>
+                        <li><a class="dropdown-item" href="#" data-location="Kamloops">Kamloops</a></li>
+                        <li><a class="dropdown-item" href="#" data-location="Kelowna">Kelowna</a></li>
+                        <li><a class="dropdown-item" href="#" data-location="Langley">Langley</a></li>
+                        <li><a class="dropdown-item" href="#" data-location="Nanaimo">Nanaimo</a></li>
+                        <li><a class="dropdown-item" href="#" data-location="Richmond">Richmond</a></li>
+                        <li><a class="dropdown-item" href="#" data-location="Surrey">Surrey</a></li>
+                        <li><a class="dropdown-item" href="#" data-location="Vancouver">Vancouver</a></li>
+                        <li><a class="dropdown-item" href="#" data-location="Victoria">Victoria</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    
+    
     <!-- Event Cards Section -->
     <div class="event-container mx-4">
-        <div id="events-go-here" class="row row-cols-auto">
+        <div id="events-go-here" class="row g-1">
         </div>
     </div>
 
