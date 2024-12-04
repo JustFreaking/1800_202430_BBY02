@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-------------------------------------->
+<!-- This page is used to make events -->
+<!-------------------------------------->
+
 <head>
     <title>Kidsconnect</title>
     <meta name="comp1800 template" content="My 1800 App">
@@ -47,15 +51,13 @@
     <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
-    <br/>
-    <br/>
+    <br />
+    <br />
     <h1 class="addeventtext">Add a new event or play-date</h1>
 
     <!-- the body of your page goes here -->
-    <!-- stuff -->
     <div class="container">
         <br>
-
         <br>
         <form id="eventForm">
             <div class="form-group">
@@ -63,31 +65,25 @@
                 <input type="text" class="form-control" id="title" placeholder="Title">
             </div><br>
 
-            <!-- <div class="form-group">
-                <label for="exampleFormControlInput1">Add the City</label>
-                <input type="text" class="form-control" id="city" placeholder="City">
-            </div><br> -->
-
             <label for="city"></label>
             <select id="city" name="city" required>
-            <option value="" disabled selected>Choose the city</option>
-              <option value="vancouver">Vancouver</option>
-              <option value="burnaby">Burnaby</option>
-              <option value="coquitlam">Coquitlam</option>
-              <option value="victoria">Victoria</option>
-              <option value="surrey">Surrey</option>
-              <option value="kelowna">Kelowna</option>
-              <option value="richmond">Richmond</option>
-              <option value="burnaby">Burnaby</option>
-              <option value="abbotsford">Abbotsford</option>
-              <option value="kamloops">Kamloops</option>
-              <option value="nanaimo">Nanaimo</option>
-              <option value="langley">Langley</option>
-              <option value="delta">Delta</option>
-              <!-- Add more cities as needed -->
+                <option value="" disabled selected>Choose the city</option>
+                <option value="vancouver">Vancouver</option>
+                <option value="burnaby">Burnaby</option>
+                <option value="coquitlam">Coquitlam</option>
+                <option value="victoria">Victoria</option>
+                <option value="surrey">Surrey</option>
+                <option value="kelowna">Kelowna</option>
+                <option value="richmond">Richmond</option>
+                <option value="burnaby">Burnaby</option>
+                <option value="abbotsford">Abbotsford</option>
+                <option value="kamloops">Kamloops</option>
+                <option value="nanaimo">Nanaimo</option>
+                <option value="langley">Langley</option>
+                <option value="delta">Delta</option>
             </select>
-          
-<br/>
+
+            <br />
             <div class="form-group">
                 <label for="exampleFormControlInput1">Add Street Address</label>
                 <input type="text" class="form-control" id="address" placeholder="Street Address">
@@ -104,15 +100,15 @@
             <div class="form-group">
                 <br>
                 <div class="d-flex justify-content-end">
-                    <button type="button" class="btn btn-lg btn-primary pull-right"
-                    onclick="writeEvent()">Create Event</button>
+                    <button type="button" class="btn btn-lg btn-primary pull-right" onclick="writeEvent()">Create
+                        Event</button>
                 </div>
             </div>
         </form>
     </div>
 
- <!-- footer goes here -->
- <footer>&copy; 2024 KidsConnect</footer>
+    <!-- footer goes here -->
+    <footer>&copy; 2024 KidsConnect</footer>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->

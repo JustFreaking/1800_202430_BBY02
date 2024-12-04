@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+    <!------------------------>
+    <!-- This page shows the list of events that a user has already joined -->
+    <!------------------------>
 
 <head>
     <title>KidsConnect</title>
@@ -34,32 +37,32 @@
     <!-------------------------------------------->
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
-     <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
 
 </head>
 
 <body>
 
     <!-- Templates for general use, not displayed -->
-<template id="eventsCardTemplate">
-    <div class="card py-2 mx-2" style="width: 18rem">
-        <!-- <img class="card-image card-img-top" src=" ..." alt="..." /> -->
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-length">placeholder</p>
-            <br />
-            <p class="card-text">
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-            </p>
-            <a class="btn btn-primary card-href">Read more ...</a>
-            <br/>
-            <br/>
-            <p>Join this event <i class="material-icons">check_box_outline_blank</i></p>
+    <template id="eventsCardTemplate">
+        <div class="card py-2 mx-2" style="width: 18rem">
+            <!-- <img class="card-image card-img-top" src=" ..." alt="..." /> -->
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-length">placeholder</p>
+                <br />
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
+                <a class="btn btn-primary card-href">Read more ...</a>
+                <br />
+                <br />
+                <p>Join this event <i class="material-icons">check_box_outline_blank</i></p>
+            </div>
         </div>
-    </div>
-</template>
+    </template>
 
     <!------------------------------>
     <!-- Your HTML Layout go here -->
@@ -69,11 +72,9 @@
 
 
     <!-- the body of your page goes here -->
-
-
-     <div class="container">
+    <div class="container">
         <h1>Here's the list of the events you are joining:</h1>
-        <br/>
+        <br />
         <!-- Here is the container for cards  -->
         <div class="container">
             <div id="events-go-here" class="row row-cols-auto">
