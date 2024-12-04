@@ -14,6 +14,7 @@ app.use("/text", express.static(path.join(__dirname, "public", "text")));
 // Serve the index.html from the "app/html" folder
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "app", "html", "index.html"));
+
 });
 
 // Export the app as a Firebase Function
@@ -23,4 +24,5 @@ exports.app = functions.https.onRequest(app);
 const PORT = 8000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(path.join(__dirname, "app", "html", "index.html"));
 });
