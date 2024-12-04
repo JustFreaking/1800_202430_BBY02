@@ -1,3 +1,6 @@
+
+// Retrieves an event name from Firestore using a document ID stored in
+// localStorage and dynamically updates the HTML element.
 var eventDocID = localStorage.getItem("EventDocID");    // Visible to all functions on this page
 
 function getEventName(id) {

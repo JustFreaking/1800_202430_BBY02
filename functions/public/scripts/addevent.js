@@ -1,4 +1,5 @@
 
+/** This  functions is used to make events, it gets the inforamtion from user input */
 function writeEvent() {
     console.log("inside write event");
     let eventTitle = document.getElementById("title").value;
@@ -7,8 +8,6 @@ function writeEvent() {
     let eventTime = document.getElementById("time").value;
     let eventDescription = document.getElementById("description").value;
 
-
-
     console.log(eventTitle, eventCity, eventAddress, eventTime, eventDescription);
 
     var user = firebase.auth().currentUser;
@@ -16,9 +15,8 @@ function writeEvent() {
         var currentUser = db.collection("users").doc(user.uid);
         var userID = user.uid;
 
-        // Get the document for the current user.
-        db.collection("events").add({
-           
+        /** This function adds the data related to events in the events collection*/
+        db.collection("events").add({     
             owner: userID,
             title: eventTitle,
             city: eventCity,

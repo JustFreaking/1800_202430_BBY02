@@ -1,3 +1,4 @@
+
 // Global filter state
 let currentSort = "newest";
 let currentLocation = null;

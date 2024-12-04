@@ -254,16 +254,6 @@ aside a:hover {
 }
 
 
-
-/* .navbar {
-    max-height: 10vh;
-    display: flex;
-    align-items: center;
-    background-color: var(--primary-color);
-    padding: 0.5rem;
-    transition: background-color 0.3s ease-in-out;
-} */
-
 /*===============================================
   Profile
 ================================================*/
@@ -437,8 +427,16 @@ aside a:hover {
     }
 } 
 
-/* Remove padding/margin for small screens, add for larger resolutions */
-/* Default styles for small resolutions */
+@media (min-width: 768px) {
+    #calendar {
+        margin: 0 10%; /* 10% margin on left and right of the viewport */
+        border: 2px solid black; /* Add border back for larger screens */
+    }
+}
+
+/*===============================================
+  Calendar
+================================================*/
 #calender-container {
     padding: 0;
     margin: 0;
@@ -452,15 +450,9 @@ aside a:hover {
     overflow: visible;
 }
 
-/* Apply margin dynamically for larger resolutions (≥768px) */
-@media (min-width: 768px) {
-    #calendar {
-        margin: 0 10%; /* 10% margin on left and right of the viewport */
-        border: 2px solid black; /* Add border back for larger screens */
-    }
-}
-
-
+/*===============================================
+  Some extra styles for pages
+================================================*/
 /* New sentence in main page */
 #recent{
     color: #333;

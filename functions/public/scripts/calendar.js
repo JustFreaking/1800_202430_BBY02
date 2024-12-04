@@ -1,3 +1,7 @@
+
+// Listens for the DOM to load, initializes Firestore, and defines 
+// a function to fetch event data from the Firestore database.
+
 document.addEventListener('DOMContentLoaded', async function () {
     var calendarEl = document.getElementById('calendar');
 

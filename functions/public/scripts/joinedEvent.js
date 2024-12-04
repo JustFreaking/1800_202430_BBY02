@@ -12,11 +12,11 @@ function doAll() {
 
             // the following functions are always called when someone is logged in
             insertNameFromFirestore();
-            
+
             insertjoiningEventsFirestore();
             displayCardsDynamically("events");
 
-           
+
         } else {
             // No user is signed in.
             console.log("No user is signed in");
@@ -47,54 +47,54 @@ function insertjoiningEventsFirestore() {
 }
 
 function displayCardsDynamically(collection) {
-    let cardTemplate = document.getElementById("eventsCardTemplate"); 
+    let cardTemplate = document.getElementById("eventsCardTemplate");
     db.collection(collection)
-    .get()  
+        .get()
         .then(allEvents => {
-            var i = 1; 
-            allEvents.forEach(doc => { 
+            var i = 1;
+            allEvents.forEach(doc => {
                 const eventId = doc.id;
-                if (user_joinedEvents.includes(eventId)){
-                var title = doc.data().title;     
-                var description = doc.data().description; 
-                var time = doc.data().time; 
-                var docID = doc.id;
-                let newcard = cardTemplate.content.cloneNode(true); 
+                if (user_joinedEvents.includes(eventId)) {
+                    var title = doc.data().title;
+                    var description = doc.data().description;
+                    var time = doc.data().time;
+                    var docID = doc.id;
+                    let newcard = cardTemplate.content.cloneNode(true);
 
-                //update title and text and image
-                newcard.querySelector('.card-title').innerHTML = title;
-                newcard.querySelector('.card-length').innerHTML = time;
-                newcard.querySelector('.card-text').innerHTML = description;
-                newcard.querySelector('a').href = "eachEvent.html?docID=" + docID;
-                let checkboxIcon = newcard.querySelector('i');
-                checkboxIcon.id = 'save-' + docID;
+                    //update title and text and image
+                    newcard.querySelector('.card-title').innerHTML = title;
+                    newcard.querySelector('.card-length').innerHTML = time;
+                    newcard.querySelector('.card-text').innerHTML = description;
+                    newcard.querySelector('a').href = "eachEvent.html?docID=" + docID;
+                    let checkboxIcon = newcard.querySelector('i');
+                    checkboxIcon.id = 'save-' + docID;
 
-                 displayCheckbox(docID);
-                 function displayCheckbox(eventDocID) {
-                     currentUser.get().then(doc => {
-                         console.log(doc.data().joiningEvents);   //debug
-                         currentJoiningEvents = doc.data().joiningEvents;
-                         if (currentJoiningEvents && currentJoiningEvents.includes(eventDocID)) {
-                            checkboxIcon.innerHTML = 'check_box';
-                            console.log("Hi");
+                    displayCheckbox(docID);
+                    function displayCheckbox(eventDocID) {
+                        currentUser.get().then(doc => {
+                            console.log(doc.data().joiningEvents);   //debug
+                            currentJoiningEvents = doc.data().joiningEvents;
+                            if (currentJoiningEvents && currentJoiningEvents.includes(eventDocID)) {
+                                checkboxIcon.innerHTML = 'check_box';
+                                console.log("Hi");
 
-                         } else {
-                            checkboxIcon.innerHTML = 'check_box_outline_blank';
-                         }
-                     }).catch(error => {
-                         console.error("Error getting user data:", error);
-                     });
-                 }
-                 checkboxIcon.onclick = () => updateCheckbox(docID);
+                            } else {
+                                checkboxIcon.innerHTML = 'check_box_outline_blank';
+                            }
+                        }).catch(error => {
+                            console.error("Error getting user data:", error);
+                        });
+                    }
+                    checkboxIcon.onclick = () => updateCheckbox(docID);
 
 
 
-                //attach to gallery, Example: "hikes-go-here"
-                document.getElementById(collection + "-go-here").appendChild(newcard);
+                    //attach to gallery, Example: "hikes-go-here"
+                    document.getElementById(collection + "-go-here").appendChild(newcard);
                 }
             })
         })
-    
+
 }
 
 function updateCheckbox(eventDocID) {
@@ -114,14 +114,14 @@ function updateCheckbox(eventDocID) {
             })
                 .then(function () {
                     console.log("This checkbox is removed for " + currentUser);
-                    console.log("Like count successfully decremented for " + eventDocID); 
+                    console.log("Like count successfully decremented for " + eventDocID);
                     let iconID = "save-" + eventDocID;   //"save-08130843"
                     console.log(iconID);
                     document.getElementById(iconID).innerText = "check_box_outline_blank";
                 })
-                .then( {
+                .then({
 
-                    })
+                })
         } else {
             currentUser.set({
                 joiningEvents: firebase.firestore.FieldValue.arrayUnion(eventDocID),
@@ -129,18 +129,18 @@ function updateCheckbox(eventDocID) {
                 {
                     merge: true
                 })
-                db.collection("events").doc(eventDocID).update({
-                    //This method increments the number of attendants.
-                    scores: firebase.firestore.FieldValue.increment(1)
-                })
+            db.collection("events").doc(eventDocID).update({
+                //This method increments the number of attendants.
+                scores: firebase.firestore.FieldValue.increment(1)
+            })
                 .then(function () {
                     console.log("This check box is selected for " + currentUser);
-                    console.log("Like count successfully incremented for " + eventDocID); 
+                    console.log("Like count successfully incremented for " + eventDocID);
                     let iconID = "save-" + eventDocID;   //"save-08130843"
                     console.log(iconID);
                     document.getElementById(iconID).innerText = "check_box";
                 })
-                
+
         }
     })
 }
