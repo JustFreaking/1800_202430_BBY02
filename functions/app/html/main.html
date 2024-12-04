@@ -68,14 +68,14 @@
     <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
-
-    <div class="container-fluid text-dark p-5 welcome-container">
-        <div class="container p-5">
-            <h1 class="display-4 welcome-message">You are logged in to KidsConnect, <span id="name-goes-here"></span></h1>
-            <hr>
-            <p class="welcome-message">Keep your kids connected here!</p>
+    <div class="image-container">
+        <img src="/img/welcome.png" alt="Background" class="background-image">
+        <div class="overlay-text">
+          <h1>Welcome to KidsConnect</h1>
+          <h1><span id="name-goes-here"></span></h1>
         </div>
-    </div>
+      </div>
+
 
     <!--The button to enable user to add events-->
     <div class="container">
@@ -94,15 +94,14 @@
     </div>
 <br/>
 <br/>
-    <div class="container">
-        <h1>Recent events:</h1>
-        <br/>
+<br/>
+<br/>
+<h1 id="recent"> Recent Events: </h1>
         <!-- Here is the container for cards  -->
         <div class="container">
             <div id="events-go-here" class="row row-cols-auto">
             </div>
         </div>
-    </div>
 
     <nav id="footerPlaceholder"></nav>
 

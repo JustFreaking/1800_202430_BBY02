@@ -159,16 +159,6 @@ aside a:hover {
 /*===============================================
   Cards
 ================================================*/
-/* .card {
-    margin-bottom: 0.7rem;
-    width: calc(20% - 1rem);
-    box-sizing: border-box;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-} */
 
 .card:hover {
     transform: translateY(-5px);
@@ -180,25 +170,34 @@ aside a:hover {
 }
 
 /*===============================================
-  Banner
+  Banner and welcome message in main page
 ================================================*/
-#welcome-message {
+.image-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Adjust as needed */
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  .background-image {
+    width: 100%;
+    filter: blur(1px); /* Blur the image */
+    -webkit-filter: blur(1px); /* For Safari */
+  }
+  
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
     text-align: center;
-    filter: blur(0px);
-    font-size: 6vw;
-}
-
-.welcome-container {
-    background-image: url(/img/welcome.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.welcome-container::before {
-    filter: blur(4px);
-    z-index: -1;
-}
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px; /* Optional: for rounded corners */
+    width: 80%; /* Optional: adjust text width */
+  }
 
 .banner {
     display: flex;
@@ -466,3 +465,8 @@ aside a:hover {
 }
 
 
+/* New sentence in main page */
+#recent{
+    color: #333;
+    margin-left: 2%;
+}
