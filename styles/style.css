@@ -1,7 +1,7 @@
 :root {
-  --primary-color: #D98C27; 
-  --secondary-color: #333; 
-  --background-color: #f4f4f9; 
+    --primary-color: #D98C27; 
+    --secondary-color: #333; 
+    --background-color: #f4f4f9; 
 }
 
 /*===============================================
@@ -13,6 +13,11 @@ html, body {
     background-color: var(--background-color);
     height: 100%;
     font-family: 'Open Sans', Arial, sans-serif;
+    overflow-x: hidden; 
+}
+
+.bg-custom {
+    background-color: #D98C27; 
 }
 
 .content {
@@ -31,7 +36,7 @@ html, body {
 h1 {
     width: auto;
     flex: none;
-    color: #E5DADA;
+    color: black;
     font-size: 3vw;
 }
 
@@ -44,24 +49,20 @@ h1 {
 /*===============================================
   Footer
 ================================================*/
-footer {
-    padding: 2rem 1rem;
-    font-size: 1rem;
-    color: #fff;
-    background-color: var(--primary-color);
+body {
+    margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    min-height: 100vh;
 }
 
-footer a {
-    color: #ffe0b2;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
+footer {
+    background-color: #D98C27;
+    color: black;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+    font-size: 16px;
 }
 
 /*===============================================
@@ -119,6 +120,21 @@ aside a:hover {
 /*===============================================
   Icons
 ================================================*/
+
+/*============
+* Text style
+* ============
+*/
+
+.info-text {
+    font-size: 1.3rem;
+}
+
+/*============
+* Icon style
+* ============
+*/
+
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
@@ -139,16 +155,6 @@ aside a:hover {
 /*===============================================
   Cards
 ================================================*/
-.card {
-    margin-bottom: 0.7rem;
-    width: calc(20% - 1rem);
-    box-sizing: border-box;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
 .card:hover {
     transform: translateY(-5px);
@@ -159,40 +165,45 @@ aside a:hover {
     font-weight: bold;
 }
 
-.container {
-    margin: 1rem;
-}
-
 /*===============================================
-  Banner
+  Banner and welcome message in main page
 ================================================*/
-#welcome-message {
+.image-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Adjust as needed */
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  .background-image {
+    width: 100%;
+    filter: blur(1px); /* Blur the image */
+    -webkit-filter: blur(1px); /* For Safari */
+  }
+  
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
     text-align: center;
-    filter: blur(0px);
-    font-size: 6vw;
-}
-
-.welcome-container {
-    background-image: url(../images/welcome.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.welcome-container::before {
-    filter: blur(4px);
-    z-index: -1;
-}
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px; /* Optional: for rounded corners */
+    width: 80%; /* Optional: adjust text width */
+  }
 
 .banner {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(../images/banner.jpg);
+    background-image: url(/img/banner.jpg);
     background-size: cover;
     background-position: center;
     height: 50vh;
-    gap: 10vw;
+    gap: 2rem;
 }
 
 .banner .divider {
@@ -204,20 +215,54 @@ aside a:hover {
 /*===============================================
   Navbar
 ================================================*/
+
+.hover-dropdown {
+    position: absolute; /* Makes it hover over content */
+    top: 100%; /* Aligns it just below the navbar */
+    left: 0; /* Aligns it to the left edge */
+    width: 100%; /* Spans the full width of the navbar */
+    z-index: 1050; /* Ensures it appears above other elements */
+    background-color: var(--primary-color); /* Matches the navbar background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+}
+
 .navbar-logo {
-    width: 5vw;
+    width: 40px; /* Consistent logo size */
     height: auto;
     object-fit: contain;
 }
 
-.navbar {
+.navbar-title {
+    white-space: nowrap; /* Prevent wrapping */
+    font-size: 1.25rem; /* Adjust title size */
+    margin-left: 0.5rem; /* Space between logo and title */
+}
+
+.navbar-collapse {
+    flex-grow: 1; /* Ensures the menu stretches properly */
+    justify-content: flex-end; /* Aligns menu to the right */
+}
+
+.hover-dropdown {
+    position: absolute; /* Dropdown is removed from document flow */
+    top: 100%; /* Place it just below the navbar */
+    left: 0;
+    width: 100%; /* Full-width dropdown */
+    z-index: 1050; /* Ensures it appears above other content */
+    background-color: var(--primary-color); /* Matches navbar background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for visibility */
+}
+
+
+
+/* .navbar {
     max-height: 10vh;
     display: flex;
     align-items: center;
     background-color: var(--primary-color);
     padding: 0.5rem;
     transition: background-color 0.3s ease-in-out;
-}
+} */
 
 /*===============================================
   Profile
@@ -281,39 +326,15 @@ aside a:hover {
 /*===============================================
   Events
 ================================================*/
-#search-container {
-    align-items: center;
-    display: flex;
-    height: 15%;
-    width: 100%;
-    justify-content: center;
-}
-
-#event-container {
-    width: 100%;
-}
-
-#event-title {
-    max-width: 15%;
-}
-
 #search-bar {
-    font-size: clamp(14px, 2vw, 24px);
-    resize: none;
-    max-height: 10vh;
-    width: 75%;
-    height: 5vh;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    resize: none; /* Disable resizing */
+    height: calc(1.5em + 0.75rem + 2px); /* Matches Bootstrap's input height */
+    padding: 0.375rem 0.75rem; /* Add some padding around the text */
+    line-height: 1.5; /* Maintain a consistent line height */
+    overflow: hidden; /* Prevent scrollbars */
 }
 
-#filter-container {
-    width: 100%;
-    display: flex;
-    height: 10%;
-    align-items: center;
-    justify-content: center;
-}
+
 
 .event-card {
     display: flex;
@@ -348,16 +369,18 @@ aside a:hover {
   Media Queries
 ================================================*/
 
-/* Smartphones (max-width: 576px) */
+@media (min-width: 992px) {
+    .col-lg-2-4 {
+        flex: 0 0 20%; /* 20% width for 5 columns */
+        max-width: 20%;
+    }
+}
+
+
 @media (max-width: 576px) {
     h1 {
         font-size: 5vw;
         text-align: center;
-    }
-
-    .card {
-        width: 100%;
-        margin-bottom: 1rem;
     }
 
     .container {
@@ -397,10 +420,6 @@ aside a:hover {
         padding: 1rem;
     }
 
-    .card {
-        width: calc(50% - 1rem);
-    }
-
     .profile-sidebar {
         width: 30%;
     }
@@ -412,11 +431,80 @@ aside a:hover {
 
 /* Small Laptops (max-width: 992px) */
 @media (max-width: 992px) {
-    .card {
-        width: calc(33.33% - 1rem);
-    }
 
     .banner {
         height: 45vh;
     }
+} 
+
+/* Remove padding/margin for small screens, add for larger resolutions */
+/* Default styles for small resolutions */
+#calender-container {
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+}
+
+#calendar {
+    padding: 0;
+    margin: 0;
+    border: none; /* Remove border for small screens */
+    overflow: visible;
+}
+
+/* Apply margin dynamically for larger resolutions (≥768px) */
+@media (min-width: 768px) {
+    #calendar {
+        margin: 0 10%; /* 10% margin on left and right of the viewport */
+        border: 2px solid black; /* Add border back for larger screens */
+    }
+}
+
+
+/* New sentence in main page */
+#recent{
+    color: #333;
+    margin-left: 2%;
+}
+
+/*New Style for addevent page*/
+.addeventtext{
+    color: black;
+    margin-left: 1%;
+}
+
+#eventForm{
+    margin-right: 10%;   
+}
+
+
+/*New Style for Thanks.html*/
+.Thanks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 10%;
+}
+
+/* Styling the box */
+.box {
+    text-align: center;
+    border: 2px solid #000;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    font-size: 2em;
+}
+
+.eventcontainer {
+    display: flex;
+    flex-direction: column; /* Stack events in a column */
+    align-items: center; /* Center events horizontally */
+    width: 90%; /* Adjust width as needed */
+    max-width: 400px; /* Optional: Restrict max width for larger screens */
+    background-color: #f9f9f9; /* Example background */
+    padding: 20px;
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
 }
