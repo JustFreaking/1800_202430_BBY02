@@ -40,27 +40,28 @@
 </head>
 
 <body>
-<!-- Templates for general use, not displayed -->
-<template id="eventsCardTemplate">
-    <div class="card py-2 mx-2" style="width: 18rem">
-        <!-- <img class="card-image card-img-top" src=" ..." alt="..." /> -->
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-length">placeholder</p>
-            <br />
-            <p class="card-text">
-                The most recent events:
-            </p>
-    
-            <p>The number of participants:</p><p class="card-attend"></p>
-            <a class="btn btn-primary card-href">Read more ...</a>
-            <br/>
-            <br/>
-            <p>Join this event <i class="material-icons">check_box_outline_blank</i></p>
-            
+    <!-- Templates for general use, not displayed -->
+    <template id="eventsCardTemplate">
+        <div class="card py-2 mx-2" style="width: 18rem">
+            <!-- <img class="card-image card-img-top" src=" ..." alt="..." /> -->
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-length">placeholder</p>
+                <br />
+                <p class="card-text">
+                    The most recent events:
+                </p>
+
+                <p>The number of participants:</p>
+                <p class="card-attend"></p>
+                <a class="btn btn-primary card-href">Read more ...</a>
+                <br />
+                <br />
+                <p>Join this event <i class="material-icons">check_box_outline_blank</i></p>
+
+            </div>
         </div>
-    </div>
-</template>
+    </template>
     <!------------------------------>
     <!-- Your HTML Layout go here -->
     <!------------------------------>
@@ -68,41 +69,45 @@
     <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
-    <div class="image-container">
-        <img src="/img/welcome.png" alt="Background" class="background-image">
-        <div class="overlay-text">
-          <h1>Welcome to KidsConnect</h1>
-          <h1><span id="name-goes-here"></span></h1>
+    <!--Body Stuff-->
+    <main>
+        <div class="image-container">
+            <img src="/img/welcome.png" alt="Background" class="background-image">
+            <div class="overlay-text">
+                <h1 style="color: azure;">Welcome to KidsConnect</h1>
+                <h1 style="color: azure;"><span id="name-goes-here"></span></h1>
+            </div>
         </div>
-      </div>
 
-
-    <!--The button to enable user to add events-->
-    <div class="container">
-        <div class="position-relative">
-            <button class="btn add-event-button fixed-size-button btn-lg position-absolute start-0 end-0 m-3" onclick="navigateToPage()">Make an Event</button>
+        <!--The button to enable user to add events-->
+        <div class="container">
+            <div class="position-relative">
+                <button class="btn add-event-button fixed-size-button btn-lg position-absolute start-0 end-0 m-3"
+                    onclick="navigateToPage()">Make an Event</button>
+            </div>
         </div>
-    </div>
 
-<br/>
-<br/>
-    <!--The button to see the list of joined events-->
-    <div class="container">
-        <div class="position-relative">
-            <button class="btn add-event-button fixed-size-button btn-lg position-absolute start-0 end-0 m-3" onclick="navigateToPagejoined()">Joined Events</button>
+        <br />
+        <br />
+        <!--The button to see the list of joined events-->
+        <div class="container">
+            <div class="position-relative">
+                <button class="btn add-event-button fixed-size-button btn-lg position-absolute start-0 end-0 m-3"
+                    onclick="navigateToPagejoined()">Joined Events</button>
+            </div>
         </div>
-    </div>
-<br/>
-<br/>
-<br/>
-<br/>
-<h1 id="recent"> Recent Events: </h1>
+        <br />
+        <br />
+        <br />
+        <br />
+        <h1 id="recent"> Recent Events: </h1>
         <!-- Here is the container for cards  -->
         <div class="container">
             <div id="events-go-here" class="row row-cols-auto">
             </div>
         </div>
 
+    </main>
     <!-- footer goes here -->
     <footer>&copy; 2024 KidsConnect</footer>
 
