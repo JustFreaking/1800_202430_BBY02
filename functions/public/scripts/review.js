@@ -12,8 +12,6 @@ function getEventName(id) {
 
 getEventName(eventDocID);
 
-// Add this JavaScript code to make stars clickable
-
 // Select all elements with the class name "star" and store them in the "stars" variable
 const stars = document.querySelectorAll('.star');
 
@@ -21,13 +19,18 @@ const stars = document.querySelectorAll('.star');
 stars.forEach((star, index) => {
     // Add a click event listener to the current star
     star.addEventListener('click', () => {
-        // Fill in clicked star and stars before it
+        // First, reset all stars to empty (unselected) state
+        stars.forEach((s) => {
+            s.textContent = 'star_border'; // Reset all stars to 'star_border' (empty)
+        });
+
+        // Fill in the clicked star and all stars before it
         for (let i = 0; i <= index; i++) {
-            // Change the text content of stars to 'star' (filled)
-            document.getElementById(`star${i + 1}`).textContent = 'star';
+            document.getElementById(`star${i + 1}`).textContent = 'star'; // Fill selected stars
         }
     });
 });
+
 // Attach the submit button event listener directly
 function writeReview() {
   console.log("inside write review");
