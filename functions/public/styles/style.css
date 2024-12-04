@@ -49,24 +49,20 @@ h1 {
 /*===============================================
   Footer
 ================================================*/
-footer {
-    padding: 2rem 1rem;
-    font-size: 1rem;
-    color: #fff;
-    background-color: var(--primary-color);
+body {
+    margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    min-height: 100vh;
 }
 
-footer a {
-    color: #ffe0b2;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
+footer {
+    background-color: #D98C27;
+    color: black;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+    font-size: 16px;
 }
 
 /*===============================================
