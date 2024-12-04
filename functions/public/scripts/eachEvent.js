@@ -11,7 +11,8 @@ function displayEventInfo() {
             eventName = doc.data().title;
             eventdetails = doc.data().description;
             eventDate = doc.data().time;
-            eventAddress = doc.data().location;
+            eventAddress = doc.data().address;
+            eventCity = doc.data().city;
             
             
             // only populate title, and image
@@ -20,6 +21,7 @@ function displayEventInfo() {
             // imgEvent.src = "../images/" + eventCode + ".jpg";
             document.getElementById( "details-go-here" ).innerHTML = eventdetails;
             document.getElementById( "event_date-go-here" ).innerHTML = eventDate;
+            document.getElementById( "City-go-here" ).innerHTML = eventCity;
             document.getElementById( "Address-go-here" ).innerHTML = eventAddress;
             
             
