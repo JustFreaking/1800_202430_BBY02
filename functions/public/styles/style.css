@@ -480,3 +480,23 @@ aside a:hover {
 #eventForm{
     margin-right: 10%;   
 }
+
+
+/*New Style for Thanks.html*/
+.Thanks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 10%;
+}
+
+/* Styling the box */
+.box {
+    text-align: center;
+    border: 2px solid #000;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    font-size: 2em;
+}
