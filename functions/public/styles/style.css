@@ -470,3 +470,13 @@ aside a:hover {
     color: #333;
     margin-left: 2%;
 }
+
+/*New Style for addevent page*/
+.addeventtext{
+    color: black;
+    margin-left: 1%;
+}
+
+#eventForm{
+    margin-right: 10%;   
+}
