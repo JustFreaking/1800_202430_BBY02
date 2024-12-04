@@ -496,3 +496,15 @@ aside a:hover {
     width: 300px;
     font-size: 2em;
 }
+
+.eventcontainer {
+    display: flex;
+    flex-direction: column; /* Stack events in a column */
+    align-items: center; /* Center events horizontally */
+    width: 90%; /* Adjust width as needed */
+    max-width: 400px; /* Optional: Restrict max width for larger screens */
+    background-color: #f9f9f9; /* Example background */
+    padding: 20px;
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+}
